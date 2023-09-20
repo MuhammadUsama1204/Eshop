@@ -1,17 +1,2 @@
-<h2>Update User</h2>
-
-<%= form_with model: current_user, url: user_path(current_user), method: :patch do |form| %>
-  <div>
-    <%= form.label :username %><br>
-    <%= form.text_field :username %>
-  </div>
-
-  <div>
-    <%= form.label :email %><br>
-    <%= form.email_field :email %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+<h1>Edit user</h1>
+<%= render "form", user: @user%>
