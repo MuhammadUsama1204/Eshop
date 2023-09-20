@@ -11,9 +11,15 @@
   </thead>
   <tbody>
     <tr>
-      <th>@user.id </th>
-      <td>@user.username</td>
-      <td>@user.email</td>
+      <th>
+      <%= @user.id%> 
+      </th>
+      <th>
+      <%= @user.username%> 
+      </th>
+      <th>
+      <%= @user.email%> 
+      </th>
       <td>
       <%= link_to "Edit", edit_user_registration_path%>
       <%
