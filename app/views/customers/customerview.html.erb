@@ -1,5 +1,6 @@
 <% if user_signed_in? %>
   <p>Welcome, <%= current_user.email %>! You are signed in.</p>
+  <%= link_to "edit", edit_customer_path %>
 <% else %>
   <%= link_to "Sign In", new_user_session_path %>
 <% end %>
