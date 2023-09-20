@@ -7,18 +7,29 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="/#">Blogs <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/#">Users</a>
+        <a class="nav-link" href="/#">Products <span class="sr-only">(current)</span></a>
       </li>
 
-       <li class="nav-item">
+       <li class="nav-item active">
         <a class="nav-link" href="/#">About Us</a>
       </li>
-       <li class="nav-item">
-       <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete } %>
+
+     
+
+      <li class="nav-item active">
+        <% if user_signed_in? %>
+          <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link" %>
+
+        <% end %>
       </li>
+
+       <li class="nav-item active">
+        <% if !user_signed_in? %>
+          <%= link_to "Add new", new_user_registration_path, class: "nav-link" %>
+
+        <% end %>
+      </li>
+
 
     </ul>
     <form class="form-inline my-2 my-lg-0">
