@@ -1,6 +1,10 @@
-<h1>User List</h1>
-<ul>
-  <% @users.each do |user| %>
-    <li><%= link_to user.email, customer_path(user) %></li>
-  <% end %>
-</ul>
+<% if @users.empty? %>
+  <h1>No Users</h1>
+<% else %>
+  <ul>
+  <h1>Emails of all Users click to see more detail  </h1>
+    <% @users.each do |user| %>
+      <li><%= link_to user.email, user_path(user) %></li>
+    <% end %>
+  </ul>
+<% end %>
