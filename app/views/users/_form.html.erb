@@ -5,8 +5,11 @@
   </div>
 
   <div>
-    <%= form.label :email %><br>
+    <br><%= form.label :email %><br>
     <%= form.email_field :email %><br>
+  </div><br>
+  <div>
+  <%= render "role_form", user: @user%>
   </div>
   <div>
     <%= form.submit %>

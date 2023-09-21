@@ -1,0 +1,19 @@
+<%= form_with model: @user do |f| %>
+ <div class="form-group">
+  <label for="user_roles">Roles:</label>
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" type="checkbox" id="admin_role" name="user[role_ids][]" value="1">
+    <label class="form-check-label" for="admin_role">Admin</label>
+  </div>
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" type="checkbox" id="customer_role" name="user[role_ids][]" value="2">
+    <label class="form-check-label" for="customer_role">Customer</label>
+  </div>
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" type="checkbox" id="staff_role" name="user[role_ids][]" value="3">
+    <label class="form-check-label" for="staff_role">Staff</label>
+  </div>
+</div>
+
+<% end %>
+
