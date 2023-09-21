@@ -73,7 +73,7 @@ Rails.application.configure do
   address: 'smtp.gmail.com',
   port: 465, # Use the Mailtrap SMTP port
   domain: 'gmail.com', # Your domain
-  user_name: 'uamaqazi',
+  user_name: 'usamaqazi',
   password: '123456',
   authentication: 'plain',
   enable_starttls_auto: true
