@@ -5,13 +5,20 @@
   </div>
 
   <div>
-    <br><%= form.label :email %><br>
-    <%= form.email_field :email %><br>
-  </div><br>
-  <div>
-  <%= render "role_form", user: @user%>
+    <%= form.label :email %><br>
+    <%= form.email_field :email %>
   </div>
+
+  <%
+=begin%>
+ <div>
+    <%= render "role_form", role: @role %>
+  </div> 
+<%
+=end%>
+
   <div>
     <%= form.submit %>
+    <%= form.error.full_messages.join(', ') if @user.errors.any? %>
   </div>
 <% end %>
