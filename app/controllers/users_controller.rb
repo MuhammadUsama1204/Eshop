@@ -27,7 +27,7 @@ class UsersController < ApplicationController
 
     def update
         @user = User.find(params[:id])
-       
+        
         if @user.update(user_params)
             flash[:success] = "Successfully Updated"
             redirect_to root_path           
@@ -49,6 +49,7 @@ class UsersController < ApplicationController
 
     private
         def user_params
-            params.require(:user).permit(:username, :email,:password, :password_confirmation)
+            
+            params.require(:user).permit(:username, :email, :role_id)
         end
 end
