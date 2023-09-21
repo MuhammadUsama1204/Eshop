@@ -1,4 +1,4 @@
-class CustomersController < ApplicationController
+class UsersController < ApplicationController
     def index
         @users = User.all
     end
@@ -27,19 +27,17 @@ class CustomersController < ApplicationController
 
     def update
         @user = User.find(params[:id])
-        
+       
         if @user.update(user_params)
             flash[:success] = "Successfully Updated"
-            redirect_to root_path
-
-            
+            redirect_to root_path           
         else
             render :edit
         end
     end
 
-
     def destroy
+        
     @user = User.find(params[:id])
         if @user.destroy
             redirect_to root_path, notice: "User was successfully destroyed."
