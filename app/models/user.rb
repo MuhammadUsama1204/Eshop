@@ -1,9 +1,14 @@
 class User < ApplicationRecord
-  has_and_belongs_to_many :roles
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
-  validates :password, format: { with: /[\!@#\$%\^&\*]/, message: "must include at least one special character" }, on: :create
+  validates :password, format: { with: /[\!@#\$%\^&\*]/, message: "must include at least one special character" }
+  enum role: {
+    admin: 'admin',
+    staff: 'staff',
+    customer: 'customer'
+  }
 
+ 
 end

@@ -55,6 +55,7 @@ group :development, :test do
   gem "byebug"
   gem 'rolify'
   gem 'letter_opener'
+  gem 'mailcatcher'
 
 end
 
