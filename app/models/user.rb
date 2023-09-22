@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :users_roles, class_name: "UsersRole"
+  has_many :users_roles
   has_many :roles, through: :users_roles
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable

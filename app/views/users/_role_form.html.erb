@@ -5,15 +5,13 @@
         <%= f.check_box :role_ids, { multiple: true }, 1, nil %>
         <%= f.label :role_ids, "Admin", class: "form-check-label" %>
       </div>
-      
       <div class="form-check form-check-inline">
         <%= f.check_box :role_ids, { multiple: true }, 2, nil %>
-        <%= f.label :role_ids, "Customer", class: "form-check-label" %>
+        <%= f.label :role_ids, "Staff", class: "form-check-label" %>
       </div>
-      
       <div class="form-check form-check-inline">
         <%= f.check_box :role_ids, { multiple: true }, 3, nil %>
-        <%= f.label :role_ids, "Staff", class: "form-check-label" %>
+        <%= f.label :role_ids, "Customer", class: "form-check-label" %>
       </div>
     </div>
     <%= f.submit %>

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-     before_action :authorize_admin, only: [:new, :create, :edit, :update, :destroy]
-    # before_action :authorize_staff, only: [:new, :create, :edit, :update,]
-    # before_action :authorize_customer, only: [:new, :create, :edit, :update, :show]
+    before_action :authorize_admin, only: :create
+    before_action :authorize_staff, only: :create
+    before_action :authorize_customer, only: [:destroy, :edit, :update]
     def index
         @users = User.all
     end
@@ -33,6 +33,7 @@ class UsersController < ApplicationController
         end
     end
     def destroy
+      
         @user = User.find(params[:id])
             if @user.destroy
                 redirect_to root_path, notice: "User was successfully destroyed."
@@ -45,9 +46,23 @@ class UsersController < ApplicationController
             params.require(:user).permit(:username, :email, role_ids: [])
         end
         def authorize_admin
-            unless current_user&.users_roles.exists?(role_id: Role.find_by(role: 'Admin').id)
-                flash[:alert] = "You are not authorized to perform this action."
-              redirect_to root_path
+            if current_user&.users_roles.exists?(role_id: Role.find_by(role: 'Admin').id)
+                flash[:alert] = "You are not authorized to perform this action 1."
+                redirect_to root_path
             end
         end
+        def authorize_staff
+            if current_user&.users_roles.exists?(role_id: Role.find_by(role: 'Staff').id)
+                flash[:alert] = "You are not authorized to perform this action 2."
+                redirect_to root_path
+            end
+        end
+    
+        def authorize_customer
+            if current_user&.users_roles.exists?(role_id: Role.find_by(role: 'Customer').id)
+                flash[:alert] = "You are not authorized to perform this action 3."
+                redirect_to root_path
+            end
+        end
+                
 end
