@@ -46,6 +46,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_22_095713) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
-  add_foreign_key "users_roles", "roles"
-  add_foreign_key "users_roles", "users"
+  add_foreign_key "users_roles", "roles", on_delete: :cascade
+  add_foreign_key "users_roles", "users", on_delete: :cascade
 end
