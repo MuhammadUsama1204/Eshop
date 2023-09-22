@@ -1,29 +1,25 @@
-<% if @users.empty? %>
-  <h1>No Users</h1>
-<% else %>
-  
-  <h1>Emails of all Users click to see more detail  </h1>
-   
-    
-    <table class="table table-striped">
-  <thead>
+  <% if @users.empty? %>
+    <h1>No Users</h1>
+  <% else %>
+    <h1>Emails of all Users click to see more detail  </h1>
+  <table class="table table-striped">
+    <thead>
     <tr>
       <th scope="col">Email Address</th>
       <th scope="col">Action</th>
     </tr>
-  </thead>
-  <tbody>
-   <% @users.each do |user| %>
-    <tr>
-      <th>
-      <%= user.email%> 
-      </th>
-      <td>
-      <%= link_to "View Details", user_path(user)%>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
- 
-<% end %>
+    </thead>
+      <tbody>
+      <% @users.each do |user| %>
+      <tr>
+        <th>
+          <%= user.email%> 
+        </th>
+        <td>
+          <%= link_to "View Details", user_path(user)%>
+        </td>
+      </tr>
+      <% end %>
+      </tbody>
+  </table>
+  <% end %>
