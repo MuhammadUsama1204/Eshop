@@ -1,6 +1,6 @@
-class CreateRoleUsers < ActiveRecord::Migration[7.0]
+class CreateUsersRoles < ActiveRecord::Migration[7.0]
   def change
-    create_table :role_users do |t|
+    create_table :users_roles do |t|
       t.references :role, null: false, foreign_key: true
       t.references :user, null: false, foreign_key: true
 
