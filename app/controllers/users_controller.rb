@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+     before_action :authorize_admin, only: [:new, :create, :edit, :update, :destroy]
+    # before_action :authorize_staff, only: [:new, :create, :edit, :update,]
+    # before_action :authorize_customer, only: [:new, :create, :edit, :update, :show]
     def index
         @users = User.all
     end
@@ -11,7 +14,7 @@ class UsersController < ApplicationController
             flash[:success] = "Successfully Added"
             redirect_to root_path
         else
-            render :new
+        render :new
         end
     end
     def show
@@ -30,15 +33,21 @@ class UsersController < ApplicationController
         end
     end
     def destroy
-    @user = User.find(params[:id])
-        if @user.destroy
-            redirect_to root_path, notice: "User was successfully destroyed."
-        else
-            redirect_to root_path, alert: "Unable to destroy user."
-        end
+        @user = User.find(params[:id])
+            if @user.destroy
+                redirect_to root_path, notice: "User was successfully destroyed."
+            else
+                redirect_to root_path, alert: "Unable to destroy user."
+            end
     end
     private
         def user_params
             params.require(:user).permit(:username, :email, role_ids: [])
+        end
+        def authorize_admin
+            unless current_user&.users_roles.exists?(role_id: Role.find_by(role: 'Admin').id)
+                flash[:alert] = "You are not authorized to perform this action."
+              redirect_to root_path
+            end
         end
 end
