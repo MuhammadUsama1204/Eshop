@@ -56,7 +56,6 @@ group :development, :test do
   gem 'rolify'
   gem 'letter_opener'
   gem 'mailcatcher'
-
 end
 
 group :development do

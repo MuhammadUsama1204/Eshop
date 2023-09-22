@@ -46,23 +46,28 @@ class UsersController < ApplicationController
             params.require(:user).permit(:username, :email, role_ids: [])
         end
         def authorize_admin
-            if current_user&.users_roles.exists?(role_id: Role.find_by(role: 'Admin').id)
-                flash[:alert] = "You are not authorized to perform this action 1."
+            if user_has_role?('Admin')
+                flash[:alert] = "You are not authorized to perform this action."
                 redirect_to root_path
             end
         end
         def authorize_staff
-            if current_user&.users_roles.exists?(role_id: Role.find_by(role: 'Staff').id)
-                flash[:alert] = "You are not authorized to perform this action 2."
+            if user_has_role?('Staff')
+                flash[:alert] = "You are not authorized to perform this action."
                 redirect_to root_path
             end
         end
     
         def authorize_customer
-            if current_user&.users_roles.exists?(role_id: Role.find_by(role: 'Customer').id)
-                flash[:alert] = "You are not authorized to perform this action 3."
+            if user_has_role?('Customer')
+                flash[:alert] = "You are not authorized to perform this action."
                 redirect_to root_path
             end
+        end
+
+        def user_has_role?(role_name)
+            role = Role.find_by(role: role_name)
+            current_user&.users_roles.exists?(role_id: role.id)
         end
                 
 end
