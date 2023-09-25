@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-    before_action :authorize_admin, only: :create
-    before_action :authorize_staff, only: :create
+    before_action :authorize_user, only: :destroy
     before_action :authorize_customer, only: [:destroy, :edit, :update]
     def index
         @users = User.all
@@ -45,22 +44,17 @@ class UsersController < ApplicationController
         def user_params
             params.require(:user).permit(:username, :email, role_ids: [])
         end
-        def authorize_admin
-            if user_has_role?('Admin')
-                flash[:alert] = "You are not authorized to perform this action."
-                redirect_to root_path
-            end
-        end
-        def authorize_staff
+
+        def authorize_user
             if user_has_role?('Staff')
-                flash[:alert] = "You are not authorized to perform this action."
+                flash[:alert] = "You are not Admin to perform this action!"
                 redirect_to root_path
             end
         end
     
         def authorize_customer
             if user_has_role?('Customer')
-                flash[:alert] = "You are not authorized to perform this action."
+                flash[:alert] = "You are not Staff or Admin to perform this action!"
                 redirect_to root_path
             end
         end
