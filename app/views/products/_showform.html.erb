@@ -1,0 +1,39 @@
+<h1>Product Details</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Product title</th>
+      <th scope="col">Description</th>
+      <th scope="col">total_quantity</th>
+      <th scope="col">quantity_in_stock</th>
+      <th scope="col">Price</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>
+        <%= @product.id%>
+      </th>
+      <th>
+        <%= @product.title%>
+      </th>
+      <th>
+        <%= @product.description%>
+      </th>
+        <th>
+        <%= @product.total_quantity%>
+      </th>
+        <th>
+        <%= @product.quantity_in_stock%>
+      </th>
+      <th>
+        <%= @product.price%>
+      </th>
+       <th>
+         <%= link_to "Edit", edit_product_path%>
+      </th>
+    </tr>
+  </tbody>
+</table>
