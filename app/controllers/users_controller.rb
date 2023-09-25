@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
     before_action :authorize_user, only: :destroy
     before_action :authorize_customer, only: [:destroy, :edit, :update]
     def index
@@ -26,42 +27,41 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         if @user.update(user_params)
             flash[:success] = "Successfully Updated"
-            redirect_to root_path           
+            redirect_to root_path
         else
             render :edit
         end
     end
     def destroy
-      
-        @user = User.find(params[:id])
-            if @user.destroy
-                redirect_to root_path, notice: "User was successfully destroyed."
-            else
-                redirect_to root_path, alert: "Unable to destroy user."
-            end
+    @user = User.find(params[:id])
+        if @user.destroy
+            redirect_to root_path, notice: "User was successfully destroyed."
+        else
+            redirect_to root_path, alert: "Unable to destroy user."
+        end
     end
     private
-        def user_params
-            params.require(:user).permit(:username, :email, role_ids: [])
-        end
+    def user_params
+        params.require(:user).permit(:username, :email, role_ids: [])
+    end
 
-        def authorize_user
-            if user_has_role?('Staff')
-                flash[:alert] = "You are not Admin to perform this action!"
-                redirect_to root_path
-            end
+    def authorize_user
+        if user_has_role?('Staff')
+            flash[:alert] = "You are not Admin to perform this action!"
+            redirect_to root_path
         end
-    
-        def authorize_customer
-            if user_has_role?('Customer')
-                flash[:alert] = "You are not Staff or Admin to perform this action!"
-                redirect_to root_path
-            end
-        end
+    end
 
-        def user_has_role?(role_name)
-            role = Role.find_by(role: role_name)
-            current_user&.users_roles.exists?(role_id: role.id)
+    def authorize_customer
+        if user_has_role?('Customer')
+            flash[:alert] = "You are not Staff or Admin to perform this action!"
+            redirect_to root_path
         end
-                
+    end
+
+    def user_has_role?(role_name)
+        role = Role.find_by(role: role_name)
+        current_user&.users_roles.exists?(role_id: role.id)
+    end
+
 end

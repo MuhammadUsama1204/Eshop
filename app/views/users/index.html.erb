@@ -13,7 +13,7 @@
     <% @users.each do |user| %>
       <tr>
         <th>
-        <%= user.email%> 
+        <%= user.email%>
         </th>
         <td>
         <%= link_to "View Details", user_path(user)%>
@@ -23,3 +23,4 @@
   </tbody>
 </table>
 <% end %>
+

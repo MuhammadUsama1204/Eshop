@@ -12,13 +12,13 @@
   <tbody>
     <tr>
       <th>
-        <%= @user.id%> 
+        <%= @user.id%>
       </th>
       <th>
-        <%= @user.username%> 
+        <%= @user.username%>
       </th>
       <th>
-        <%= @user.email%> 
+        <%= @user.email%>
       </th>
        <th>
         <%= @user.roles.pluck(:role).join(', ') %>

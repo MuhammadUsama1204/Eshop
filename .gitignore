@@ -33,7 +33,7 @@
 /config/credentials.yml.enc
 
 # Ignore the "test" folder
-test/fixtures
+/test/*
 
 # Ignore "byebug" history files
-/byebug_history
+.byebug_history
