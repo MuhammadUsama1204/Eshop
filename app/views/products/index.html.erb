@@ -1,9 +1,29 @@
-<h1>Products</h1>
-<ul>
-  <% @products.each do |product| %>
-      <li>
-        <%= link_to product.title,product %>
-      </li>
-  <% end %>
-</ul>
-<%= link_to "New Product", new_product_path %>
+<% if @products.empty? %>
+  <h1>No Products are Available</h1>
+<% else %>
+  <h1>Products</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Product Id</th>
+      <th scope="col">Title</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <th>
+        <%= product.id%>
+        </th>
+          <th>
+        <%= product.title%>
+        </th>
+        <td>
+        <%= link_to "View Details", product_path(product)%>
+        </td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>
+<% end %>
