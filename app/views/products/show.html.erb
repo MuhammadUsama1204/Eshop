@@ -8,6 +8,7 @@
       <th scope="col">total_quantity</th>
       <th scope="col">quantity_in_stock</th>
       <th scope="col">Price</th>
+      <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
@@ -29,6 +30,9 @@
       </th>
       <th>
         <%= @product.price%>
+      </th>
+       <th>
+         <%= link_to "Edit", edit_product_path%>
       </th>
     </tr>
   </tbody>
