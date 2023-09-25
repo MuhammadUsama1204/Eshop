@@ -1,5 +1,6 @@
 <h1>User Profile</h1>
 <table class="table table-striped">
+
   <thead>
     <tr>
       <th scope="col">id</th>
@@ -9,20 +10,25 @@
       <th scope="col">Action</th>
     </tr>
   </thead>
+
   <tbody>
     <tr>
       <th>
         <%= @user.id%>
       </th>
+
       <th>
         <%= @user.username%>
       </th>
+
       <th>
         <%= @user.email%>
       </th>
-       <th>
+
+      <th>
         <%= @user.roles.pluck(:role).join(', ') %>
       </th>
+
       <td>
         <%= link_to "Edit", edit_user_path%>
         <%= link_to "Destroy", user_path(@user), data: {
@@ -33,4 +39,3 @@
     </tr>
   </tbody>
 </table>
-
