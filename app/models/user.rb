@@ -4,5 +4,4 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :password, format: { with: /\A(?=.*[!@#$%^&*])/, message: "must include at least one special character" }
- 
 end
