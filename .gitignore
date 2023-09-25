@@ -31,3 +31,9 @@
 /config/master.key
 /config/database.yml
 /config/credentials.yml.enc
+
+#byebug history
+.byebug_history
+
+#testfile
+/test/*
