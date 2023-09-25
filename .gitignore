@@ -33,4 +33,6 @@
 /config/credentials.yml.enc
 
 #byebug
-/.byebug_history
+.byebug_history
+#test
+/test/*
