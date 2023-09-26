@@ -2,6 +2,10 @@ class ProductsController < ApplicationController
 
   def index
       @products= Product.all
+      @products = @products.where("title LIKE ?", "%#{params[:search]}%")
+      min_price = params[:min_price]
+      max_price = params[:max_price]
+      @products = Product.where(price: min_price..max_price)
   end
 
   def show
@@ -47,6 +51,10 @@ class ProductsController < ApplicationController
   private
   def product_params
       params.require(:product).permit(:title, :description, :price, :total_quantity, :quantity_in_stock)
+  end
+
+  def serachFilter
+
   end
 
 end
