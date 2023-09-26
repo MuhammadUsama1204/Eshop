@@ -1,0 +1,29 @@
+<% if @products.empty? %>
+  <h1>No Products are available</h1>
+<% else %>
+  <h1>Products</h1>
+  <div class="container">
+    <div class="row">
+      <% @products.each do |product| %>
+        <div class="col-md-4">
+          <div class="card">
+            <% if product.display_picture.attached? %>
+            <%= image_tag product.display_picture, width: 350, height: 250, class: "product-image" %>
+            <% else %>
+              <p>No image available for this Product!</p>
+            <% end %>
+
+            <div class="card-body bg-info text-white">
+              <h5 class="card-title">Title: <%= product.title %></h5>
+              <p class="card-text">Description:<br><%= product.description %></p>
+            </div>
+
+            <div class="card-footer bg-dark">
+              <a href="<%= product_path(product) %>" class="btn btn-primary">View Details</a>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
