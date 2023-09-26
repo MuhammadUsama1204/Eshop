@@ -1,0 +1,12 @@
+<%= form_tag(products_path, method: :get) do %>
+  <%= label_tag "search", "Search by Title:" %>
+  <%= text_field_tag "search" %>
+
+  <%= label_tag "min_price", "Min Price:" %>
+  <%= number_field_tag "min_price" %>
+
+  <%= label_tag "max_price", "Max Price:" %>
+  <%= number_field_tag "max_price" %>
+
+  <%= submit_tag "Filter" %>
+<% end %>
