@@ -37,8 +37,9 @@
     </tr>
   </tbody>
 </table>
+
 <% if @product.display_picture.attached? %>
-  <%= image_tag @product.display_picture, class: "product-image" %>
+Product Image<br><%= image_tag @product.display_picture, width: 500, height: 350, class: "product-image" %>
 <% else %>
-  <p>No image available for this Product.</p>
+  <p>No image available for this Product!</p>
 <% end %>
