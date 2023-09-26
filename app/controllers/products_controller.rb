@@ -31,7 +31,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     if @product.update(product_params)
       flash[:success] = "Successfully Updated"
-      redirect_to root_path
+      redirect_to products_path
     else
       render :edit, status: :unprocessable_entity
     end
@@ -40,9 +40,9 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
         if @product.destroy
-            redirect_to root_path, notice: "Product was successfully destroyed."
+            redirect_to products_path, notice: "Product was successfully destroyed."
         else
-            redirect_to root_path, alert: "Unable to destroy Product."
+            redirect_to products_path, alert: "Unable to destroy Product."
         end
     end
   private
