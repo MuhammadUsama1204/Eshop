@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+  before_action :find_user, only: [:show, :edit, :update, :destroy]
   before_action :authorize_user, only: :destroy
   before_action :authorize_customer, only: [:destroy, :edit, :update]
 
@@ -13,7 +14,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
     if @user.save
       flash[:success] = "Successfully Added"
       redirect_to root_path
@@ -23,16 +23,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
-
     if @user.update(user_params)
       flash[:success] = "Successfully Updated"
       redirect_to root_path
@@ -42,8 +38,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
-
     if @user.destroy
       redirect_to root_path, notice: "User was successfully destroyed."
     else
@@ -74,6 +68,10 @@ private
   def user_has_role?(role_name)
     role = Role.find_by(role: role_name)
     current_user&.users_roles.exists?(role_id: role.id)
+  end
+
+  def find_user
+    @user = User.find(params[:id])
   end
 
 end

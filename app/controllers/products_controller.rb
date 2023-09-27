@@ -1,12 +1,13 @@
 class ProductsController < ApplicationController
 
+  before_action :find_product, only: [:show, :edit, :update, :destroy]
+  
   def index
       @products= Product.all
       searchFilter
   end
 
   def show
-      @product = Product.find(params[:id])
   end
 
   def new
@@ -14,21 +15,19 @@ class ProductsController < ApplicationController
   end
 
   def create
-      @product = Product.new(product_params)
-      if @product.save
-          flash[:success] = "Successfully Added"
-          redirect_to products_path
-      else
-          render :new, status: :unprocessable_entity
-      end
+    @product = Product.new(product_params)
+    if @product.save
+        flash[:success] = "Successfully Added"
+        redirect_to products_path
+    else
+        render :new, status: :unprocessable_entity
+    end
   end
 
   def edit
-    @product = Product.find(params[:id])
   end
 
   def update
-    @product = Product.find(params[:id])
     if @product.update(product_params)
       flash[:success] = "Successfully Updated"
       redirect_to products_path
@@ -38,13 +37,12 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product = Product.find(params[:id])
-        if @product.destroy
-            redirect_to products_path, notice: "Product was successfully destroyed."
-        else
-            redirect_to products_path, alert: "Unable to destroy Product."
-        end
+    if @product.destroy
+      redirect_to products_path, notice: "Product was successfully destroyed."
+    else
+      redirect_to products_path, alert: "Unable to destroy Product."
     end
+  end
 
   private
   def product_params
@@ -71,6 +69,10 @@ class ProductsController < ApplicationController
       max_price = params[:max_price]
       @products = @products.where("price <= ?", max_price)
     end
+  end
+
+  def find_product
+    @product = Product.find(params[:id])
   end
 
 end
