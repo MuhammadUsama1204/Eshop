@@ -1,8 +1,6 @@
 class UsersController < ApplicationController
-
   before_action :find_user, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_user, only: :destroy
-  before_action :authorize_customer, only: [:destroy, :edit, :update]
+  before_action :authorize_user, only: [:destroy, :edit, :update]
 
   def index
     @users = User.all
@@ -31,7 +29,7 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_params)
       flash[:success] = "Successfully Updated"
-      redirect_to root_path
+      redirect_to users_path
     else
       render :edit
     end
@@ -52,22 +50,9 @@ private
   end
 
   def authorize_user
-    if user_has_role?('Staff')
-      flash[:alert] = "You are not Admin to perform this action!"
-      redirect_to root_path
-    end
-  end
-
-  def authorize_customer
-    if user_has_role?('Customer')
-      flash[:alert] = "You are not Staff or Admin to perform this action!"
-      redirect_to root_path
-    end
-  end
-
-  def user_has_role?(role_name)
-    role = Role.find_by(role: role_name)
-    current_user&.users_roles.exists?(role_id: role.id)
+    flash[:alert] = "You are not Admin to perform this action!" if current_user.is_staff? && !current_user.is_admin?
+    flash[:alert] = "You are not Staff or Admin to perform this action!" if current_user.is_customer? && !current_user.is_staff? && !current_user.is_admin?
+    redirect_to users_path if !current_user.is_admin?
   end
 
   def find_user
