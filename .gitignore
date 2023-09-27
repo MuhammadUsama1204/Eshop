@@ -32,8 +32,8 @@
 /config/database.yml
 /config/credentials.yml.enc
 
-#byebug history
-.byebug_history
-
-#testfile
+# Ignore the "test" folder
 /test/*
+
+# Ignore "byebug" history files
+.byebug_history
