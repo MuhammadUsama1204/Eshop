@@ -45,8 +45,19 @@ class AddDeviseToUsers < ActiveRecord::Migration[7.0]
   end
 
   def self.down
-    # By default, we don't want to make any assumption about how to roll back a migration when your
-    # model already existed. Please edit below which fields you would like to remove in this migration.
-    raise ActiveRecord::IrreversibleMigration
+     # Reverse the actions performed in self.up
+     remove_column :users, :encrypted_password, :string, null: false, default: ""
+     remove_column :users, :reset_password_token, :string
+     remove_column :users, :reset_password_sent_at, :datetime
+     remove_column :users, :remember_created_at, :datetime
+     remove_column :users, :username, :string
+     remove_column :users, :email, :string, null: false, default: ""
+     remove_column :users, :confirmation_token, :string
+     remove_column :users, :confirmed_at, :datetime
+     remove_column :users, :confirmation_sent_at, :datetime
+     remove_column :users, :unconfirmed_email, :string
+     remove_index :users, name: 'index_users_on_email' if index_exists?(:users, :email)
+     remove_index :users, name: 'index_users_on_reset_password_token' if index_exists?(:users, :reset_password_token)
+     drop_table :users
   end
 end
