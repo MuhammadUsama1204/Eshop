@@ -9,4 +9,10 @@ class User < ApplicationRecord
   def set_default_role
     self.users_roles.build(role_id: Role.find_by(role: 'Customer').id)
   end
+
+  Role.pluck(:role).each do |role_name|
+    define_method("is_#{role_name.downcase}?") do
+      roles.map {|r| r.role}.include?(role_name)
+    end
+  end
 end
