@@ -34,6 +34,7 @@
 
 # Ignore the "test" folder
 /test/*
+/test/fixtures/*
 
 # Ignore "byebug" history files
 .byebug_history
