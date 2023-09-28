@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_user, only: [:destroy, :edit, :update]
+  before_action :find_user, only: %i[show edit update destroy]
+  before_action :authorize_user, only: %i[destroy edit update]
 
   def index
     @users = User.all
@@ -20,11 +20,9 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @user.update(user_params)

@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :find_product, only: [:show, :edit, :update, :destroy]
+  before_action :find_product, only: %i[show edit update destroy]
 
   def index
     @products = Product.searchFilter(params)
