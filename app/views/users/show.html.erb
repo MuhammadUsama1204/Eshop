@@ -29,12 +29,14 @@
         <%= @user.roles.pluck(:role).join(', ') %>
       </th>
 
-      <td>
+      <th>
         <%= link_to "Edit", edit_user_path%>
-        <%= button_to "Destroy", user_path(@user), method: :delete, data: {
-                    turbo_confirm: "Are you sure?"
-                  } %>
-      </td>
+        <div style="display: inline-block;">
+          <%= button_to "Destroy", user_path(@user), method: :delete, data: {
+                turbo_confirm: "Are you sure?"
+              } %>
+        </div>
+      </th>
     </tr>
   </tbody>
 </table>
