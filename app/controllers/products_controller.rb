@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.searchFilter(params)
+    @paginate_product = Product.paginate(page: params[:page], per_page: Product::PER_PAGE)
   end
 
   def show; end
@@ -43,7 +44,7 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:title, :description, :price, :total_quantity, :quantity_in_stock,:display_picture)
+    params.require(:product).permit(:title, :description, :price, :total_quantity, :quantity_in_stock, :display_picture)
   end
 
   def find_product
