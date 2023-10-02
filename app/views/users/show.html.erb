@@ -1,42 +1,44 @@
 <h1>User Profile</h1>
-<table class="table table-striped">
+<div class = 'container'>
+  <table class="table table-striped">
 
-  <thead>
-    <tr>
-      <th scope="col">id</th>
-      <th scope="col">Username</th>
-      <th scope="col">Email Address</th>
-      <th scope="col">Role</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Username</th>
+        <th scope="col">Email Address</th>
+        <th scope="col">Role</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <tr>
-      <th>
-        <%= @user.id%>
-      </th>
+    <tbody>
+      <tr>
+        <th>
+          <%= @user.id%>
+        </th>
 
-      <th>
-        <%= @user.username%>
-      </th>
+        <th>
+          <%= @user.username%>
+        </th>
 
-      <th>
-        <%= @user.email%>
-      </th>
+        <th>
+          <%= @user.email%>
+        </th>
 
-      <th>
-        <%= @user.roles.pluck(:role).join(', ') %>
-      </th>
+        <th>
+          <%= @user.roles.pluck(:role).join(', ') %>
+        </th>
 
-      <th>
-        <%= link_to "Edit", edit_user_path%>
-        <div style="display: inline-block;">
-          <%= button_to "Destroy", user_path(@user), method: :delete, data: {
-                turbo_confirm: "Are you sure?"
-              } %>
-        </div>
-      </th>
-    </tr>
-  </tbody>
-</table>
+        <th>
+          <%= link_to "Edit", edit_user_path%>
+          <div style="display: inline-block;">
+            <%= button_to "Destroy", user_path(@user), method: :delete, data: {
+                  turbo_confirm: "Are you sure?"
+                } %>
+          </div>
+        </th>
+      </tr>
+    </tbody>
+  </table>
+</div>
