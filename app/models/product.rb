@@ -1,4 +1,6 @@
 class Product < ApplicationRecord
+  has_many :carts
+  has_many :users, through: :carts
   has_one_attached :display_picture
   PER_PAGE = 10;
   def self.searchFilter(params)
