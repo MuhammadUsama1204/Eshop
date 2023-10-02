@@ -29,9 +29,11 @@
       </th>
       <th>
         <%= link_to "Edit", edit_product_path %>
-        <%= button_to "Destroy", product_path(@product), method: :delete, data: {
-                    turbo_confirm: "Are you sure?"
-                  } %>
+        <div style="display: inline-block;">
+          <%= button_to "Destroy", product_path(@product), method: :delete, data: {
+                turbo_confirm: "Are you sure?"
+              } %>
+        </div>
       </th>
     </tr>
   </tbody>

@@ -7,8 +7,8 @@
   <thead>
 
     <tr>
-      <th scope="col">Username</th>
-      <th scope="col">Email</th>
+      <td scope="col">Username</td>
+      <td scope="col">Email</td>
     </tr>
 
   </thead>
@@ -17,9 +17,9 @@
 
     <% @users.each do |user| %>
       <tr>
-        <th>
+        <td>
           <%= link_to user.username, user_path(user) %>
-        </th>
+        </td>
         <td>
           <%= user.email %>
         </td>
@@ -31,7 +31,7 @@
 <nav aria-label="...">
   <ul class="pagination justify-content-center">
     <li class="page-item">
-      <%= will_paginate @paginate_user %>
+      <%= will_paginate @paginate_users %>
     </li>
   </ul>
 </nav>

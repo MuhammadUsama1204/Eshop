@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.searchFilter(params)
-    @paginate_product = Product.paginate(page: params[:page], per_page: Product::PER_PAGE)
+    @paginate_products = Product.paginate(page: params[:page], per_page: Product::PER_PAGE)
   end
 
   def show; end
