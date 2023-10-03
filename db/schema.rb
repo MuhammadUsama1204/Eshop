@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_03_084809) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_03_092511) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -47,6 +47,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_03_084809) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_carts_on_user_id"
+  end
+
+  create_table "line_items", force: :cascade do |t|
+    t.bigint "cart_id", null: false
+    t.bigint "product_id", null: false
+    t.integer "quantity"
+    t.decimal "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_line_items_on_cart_id"
+    t.index ["product_id"], name: "index_line_items_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -94,6 +105,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_03_084809) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "carts", "users"
+  add_foreign_key "line_items", "carts"
+  add_foreign_key "line_items", "products"
   add_foreign_key "users_roles", "roles", on_delete: :cascade
   add_foreign_key "users_roles", "users", on_delete: :cascade
 end
