@@ -2,8 +2,8 @@ class ProductsController < ApplicationController
   before_action :find_product, only: %i[show edit update destroy]
 
   def index
-    @products = Product.searchFilter(params)
-    @paginate_products = Product.paginate(page: params[:page], per_page: Product::PER_PAGE)
+    @paginate_products = Product.all.paginate(page: params[:page], per_page: Product::PER_PAGE)
+    @products = Product.searchFilter(@paginate_products, params)
   end
 
   def show; end
