@@ -1,4 +1,8 @@
 class CartsController < ApplicationController
+	def show
+    @cart = current_user.cart
+  end
+	
 	def add_to_cart	
 		@product = Product.find(params[:product_id])
 		@line_item = @cart.line_items.find_or_initialize_by(product: @product)
