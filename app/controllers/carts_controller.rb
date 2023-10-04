@@ -19,4 +19,14 @@ class CartsController < ApplicationController
 			render :products_path, notice: "#{@product.title} failed to add to cart."
 		end
 	end
+
+	def remove_from_cart
+    @line_item = LineItem.find(params[:id])    
+    if @cart.line_items.empty?
+      @cart.destroy
+    else
+      @line_item.destroy
+    end
+    redirect_to cart_path
+  end
 end
