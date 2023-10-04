@@ -15,14 +15,22 @@
         <% @cart.line_items.each do |line_item| %>
           <tr>
             <td><%= line_item.product.title %></td>
-            <td><%= line_item.quantity %></td>
+            <td>
+              <div class="quantity-control">
+                <button class="btn btn-sm btn-outline-secondary decrease-quantity" data-line-item-id="<%= line_item.id %>">-</button>
+                <input type="number" class="quantity-input" data-line-item-id="<%= line_item.id %>" value="<%= line_item.quantity %>" min="1">
+                <button class="btn btn-sm btn-outline-secondary increase-quantity" data-line-item-id="<%= line_item.id %>">+</button>
+              </div>
+            </td>
             <td><%= number_to_currency(line_item.price) %></td>
-            <td><%= total_price=number_to_currency( line_item.product.price * line_item.quantity ) %></td>
+            <td><%= number_to_currency(line_item.product.price * line_item.quantity) %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
+    <%= link_to 'Continue Shopping', products_path, class: 'btn btn-primary' %>
   <% else %>
     <p>Your cart is empty!</p>
+    <%= link_to 'Start Shopping', products_path, class: 'btn btn-primary' %>
   <% end %>
 </div>
