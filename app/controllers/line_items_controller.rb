@@ -1,29 +1,18 @@
 class LineItemsController < ApplicationController
-	def index
-    @line_items = LineItem.all
-  end
+	# def create
+  #   product = Product.find(params[:product_id])
+  #   @line_item = @cart.add_product(product)
 
-	def new 
-		@line_item = LineItem.new
-	end
-
-	def show
-  end
-
-	def create
-    product = Product.find(params[:product_id])
-    @line_item = @cart.add_product(product)
-
-		if line_item.save
-      redirect_to cart_path, notice: 'Product added to cart.'
-    else
-      redirect_to product_path(product), alert: 'Failed to add product to cart.'
-    end
-  end
+	# 	if line_item.save
+  #     redirect_to cart_path, notice: 'Product added to cart.'
+  #   else
+  #     redirect_to product_path(product), alert: 'Failed to add product to cart.'
+  #   end
+  # end
 	
-	private
+	# private
 	
-  def line_item_params
-    params.require(:line_item).permit(:price, :quantity, :product_id, :cart_id)
-	end
+  # def line_item_params
+  #   params.require(:line_item).permit(:price, :quantity, :product_id, :cart_id)
+	# end
 end
