@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  has_many :line_items
+  has_many :line_items, dependent: :destroy
   has_many :carts, through: :line_items
   has_one_attached :display_picture
   PER_PAGE = 10;
