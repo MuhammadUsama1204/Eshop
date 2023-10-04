@@ -6,7 +6,12 @@ Rails.application.routes.draw do
   }
   resources :users  
   resources :products
-  resources :carts 
-  resources :line_items 
-  post '/carts/add_to_cart/:product_id', to: 'carts#add_to_cart', as: 'add_to_cart'
+  resources :line_items
+  resources :carts do
+    member do
+      get 'remove_from_cart', to: 'carts#remove_from_cart', as: 'remove_from_cart'
+      post 'add_to_cart/:product_id', to: 'carts#add_to_cart', as: 'add_to_cart'
+
+    end
+  end
 end
