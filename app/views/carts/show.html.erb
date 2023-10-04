@@ -4,6 +4,7 @@
     <table class="table table-bordered table-hover">
       <thead class="thead-dark">
         <tr>
+          <th scope="col">Delete</th>
           <th scope="col">Image</th>
           <th scope="col">Product</th>
           <th scope="col">Quantity</th>
@@ -14,6 +15,9 @@
       <tbody>
         <% @cart.line_items.each do |line_item| %>
           <tr>
+            <td>
+              <%= link_to raw('<i class="fas fa-trash-alt"></i>'), remove_from_cart_cart_path(line_item), method: :delete, class: 'btn btn-danger' %>
+            </td>
             <td class="align-middle">
               <% if line_item.product.display_picture.attached? %>
                 <%= image_tag line_item.product.display_picture, width: 80, height: 65, class: "product-image rounded-circle" %>
