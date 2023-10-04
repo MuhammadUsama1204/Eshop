@@ -26,7 +26,7 @@
     </ul>
 
     <ul class="navbar-nav ml-auto">
-      <% if @cart.line_items.any? %>
+      <% if @cart && @cart.line_items.any? %>
         <%= link_to 'Your Cart', cart_path(@cart), class: 'btn ml-2' %>
       <% end %>
       <% if user_signed_in? %>
