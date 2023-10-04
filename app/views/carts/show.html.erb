@@ -1,0 +1,28 @@
+<!-- app/views/carts/show.html.erb -->
+<div class="container mt-4">
+  <h1 class="display-4">Your Shopping Cart</h1>
+  <% if @cart.line_items.any? %>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Product</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Price</th>
+          <th scope="col">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cart.line_items.each do |line_item| %>
+          <tr>
+            <td><%= line_item.product.title %></td>
+            <td><%= line_item.quantity %></td>
+            <td><%= number_to_currency(line_item.price) %></td>
+            <td><%= total_price=number_to_currency( line_item.product.price * line_item.quantity ) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>Your cart is empty!</p>
+  <% end %>
+</div>
