@@ -1,17 +1,8 @@
 class CartsController < ApplicationController
-	before_action :set_cart
-
-	def index
-    @carts = Cart.all
-  end
-
-	def new
-    @cart = Cart.new
-  end
-
-	def add_to_cart
+	def add_to_cart	
 		@product = Product.find(params[:product_id])
 		@line_item = @cart.line_items.find_or_initialize_by(product: @product)
+		@line_item.price = @product.price
 		if @line_item.persisted?
 			@line_item.increment(:quantity)
 		else
@@ -19,19 +10,9 @@ class CartsController < ApplicationController
 		end
 	
 		if @line_item.save
-			redirect_to cart_path(@cart), notice: "#{@product.title} added to cart."
+			redirect_to products_path, notice: "#{@product.title} added to cart."
 		else
-			render :new
+			render :products_path, notice: "#{@product.title} failed to add to cart."
 		end
-	end
-		
-	private
-
-	def set_cart
-    if current_user.cart
-      @cart = current_user.cart
-    else
-      @cart = current_user.create_cart
-    end
 	end
 end
