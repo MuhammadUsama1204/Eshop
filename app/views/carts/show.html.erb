@@ -1,49 +1,83 @@
 <div class="container mt-4">
   <h1 class="display-4">Your Shopping Cart</h1>
-  <% if @cart.line_items.any? %>
-    <table class="table table-bordered table-hover">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">Delete</th>
-          <th scope="col">Image</th>
-          <th scope="col">Product</th>
-          <th scope="col">Quantity</th>
-          <th scope="col">Price</th>
-          <th scope="col">Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @cart.line_items.each do |line_item| %>
-          <tr>
-            <td>
-              <%= link_to raw('<i class="fas fa-trash-alt"></i>'), remove_from_cart_cart_path(line_item), method: :delete, class: 'btn btn-danger' %>
-            </td>
-            <td class="align-middle">
-              <% if line_item.product.display_picture.attached? %>
-                <%= image_tag line_item.product.display_picture, width: 80, height: 65, class: "product-image rounded-circle" %>
-              <% else %>
-                <div class="no-image-container">
-                  <p class="card-text mt-3">No image available for this Product!</p>
-                </div>
-              <% end %>
-            </td>
-            <td class="align-middle"><%= line_item.product.title %></td>
-            <td class="align-middle">
-              <div class="quantity-control">
-                <button class="btn btn-sm btn-outline-secondary decrease-quantity" data-line-item-id="<%= line_item.id %>">-</button>
-                <input type="number" class="quantity-input" data-line-item-id="<%= line_item.id %>" value="<%= line_item.quantity %>" min="0" style="width: 45px;">
-                <button class="btn btn-sm btn-outline-secondary increase-quantity" data-line-item-id="<%= line_item.id %>">+</button>
+  <table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Delete</th>
+        <th scope="col">Image</th>
+        <th scope="col">Product</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Unit Price</th>
+        <th scope="col">Total</th>
+      </tr>
+    </thead>
+    <tbody class="cart-items">
+      <% @cart.line_items.each do |line_item| %>
+        <tr class="cart-row">
+          <td>
+            <%= link_to raw('<i class="fas fa-trash-alt"></i>'), remove_from_cart_cart_path(line_item), method: :delete, class: 'btn btn-danger btn-remove' %>
+          </td>
+          <td class="align-middle cart-item-image-cell">
+            <% if line_item.product.display_picture.attached? %>
+              <%= image_tag line_item.product.display_picture, width: 80, height: 65, class: "cart-item-image rounded-circle" %>
+            <% else %>
+              <div class="no-image-container">
+                <p class="card-text mt-3">No image available for this Product!</p>
               </div>
-            </td>
-            <td class="align-middle"><%= number_to_currency(line_item.price) %></td>
-            <td class="align-middle"><%= number_to_currency(line_item.product.price * line_item.quantity) %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <%= link_to 'Continue Shopping', products_path, class: 'btn btn-primary' %>
-  <% else %>
-    <p>Your cart is empty!</p>
-    <%= link_to 'Start Shopping', products_path, class: 'btn btn-primary' %>
-  <% end %>
+            <% end %>
+          </td>
+          <td class="align-middle product-title"><%= line_item.product.title %></td>
+          <td class="align-middle cart-quantity-cell">
+            <div class="quantity-control">
+              <button class="btn btn-sm btn-primary quantity-btn" data-action="decrement">-</button>
+              <span class="quantity">1</span>
+              <button class="btn btn-sm btn-primary quantity-btn" data-action="increment">+</button>
+            </div>
+          </td>
+          <td class="align-middle product-price"><%= number_to_currency(line_item.price) %></td>
+          <td class="align-middle item-total "><%= number_to_currency(line_item.price) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= link_to 'Continue Shopping', products_path, class: 'btn btn-primary btn-continue-shopping' %>
 </div>
+ 
+<script>
+  // Define a class for managing item quantities and totals
+  class CartItem {
+    constructor(element) {
+      this.element = element;
+      this.quantityElement = element.querySelector('.quantity');
+      this.priceElement = element.querySelector('.product-price');
+      this.totalElement = element.querySelector('.item-total');
+      this.quantity = parseInt(this.quantityElement.textContent);
+      this.price = parseFloat(this.priceElement.textContent.replace('$', '').replace(',', ''));
+    }
+
+    updateQuantity(action) {
+      if (action === 'increment') {
+        this.quantity++;
+      } else if (action === 'decrement' && this.quantity > 1) {
+        this.quantity--;
+      }
+      this.quantityElement.textContent = this.quantity;
+    }
+    }
+  }
+  // Get all quantity buttons with the class 'quantity-btn'
+  const quantityButtons = document.querySelectorAll('.quantity-btn');
+
+  // Create CartItem objects for each cart row
+  const cartItems = Array.from(document.querySelectorAll('.cart-row')).map((element) => new CartItem(element));
+  
+  // Loop through each quantity button and add click event listener
+  quantityButtons.forEach((button) => {
+    button.addEventListener('click', (event) => {
+      const action = event.target.getAttribute('data-action');
+      const cartItem = cartItems.find((item) => item.element.contains(event.target));
+      cartItem.updateQuantity(action);
+    });
+  });
+</script>
+
