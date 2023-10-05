@@ -62,7 +62,12 @@
         this.quantity--;
       }
       this.quantityElement.textContent = this.quantity;
+      this.updateTotal();
     }
+
+    updateTotal() {
+      const totalPrice = this.quantity * this.price;
+      this.totalElement.textContent = `$${totalPrice.toFixed(2)}`;
     }
   }
   // Get all quantity buttons with the class 'quantity-btn'
