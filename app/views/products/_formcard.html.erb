@@ -2,7 +2,9 @@
   <h1>No Products are available</h1>
 <% else %>
   <h1 class="mt-3 mb-3">Products</h1>
-  <%= render "formfilter", product: @product %>
+  <div  class="container text-center">
+    <%= render "formfilter", product: @product %>
+  </div>
   <div class="container">
     <div class="row">
       <% @products.each do |product| %>
