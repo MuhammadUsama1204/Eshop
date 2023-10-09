@@ -1,30 +1,39 @@
-<% if @products.empty? %>
-  <h1>No Products are available</h1>
-<% else %>
-  <h1 class="mt-3 mb-3">Products</h1>
-  <div  class="container text-center">
-    <%= render "formfilter", product: @product %>
-  </div>
-  <div class="container">
-    <div class="row">
-      <% @products.each do |product| %>
-        <div class="col-md-4">
-          <div class="card mb-3">
-            <% if product.display_picture.attached? %>
-              <%= image_tag product.display_picture, class: "product-image" %>
-            <% else %>
-              <p class="card-text mt-3">No image available for this Product!</p>
-            <% end %>
-
-            <div class="card-body bg-info text-white">
-              <h5 class="card-title">Title: <%= product.title %></h5>
-              <p class="card-text">Description:<br><%= product.description %></p>
-            </div>
-            <div class="card-footer bg-dark"> <a href="<%= product_path(product) %>" class="btn btn-primary">View Details</a> </div>
-            <div class="bg-dark"><%= button_to 'Add to Cart', add_to_cart_cart_path(current_user, product_id: product.id), class: 'btn btn-primary' %></div>
-          </div>
-        </div>
-      <% end %>
+<div class="container py-5">
+  <% if @products.empty? %>
+    <div class="col-md-12 text-center">
+      <h1>No Products are available</h1>
     </div>
-  </div>
-<% end %>
+  <% else %>
+    <h1 class="mt-3 mb-3">Products</h1>
+    <div class="container text-center">
+      <%= render "formfilter", product: @product %>
+    </div>
+    <div class="container">
+      <div class="row">
+        <% @products.each do |product| %>
+          <div class="col-md-12 col-lg-4 mb-4">
+            <div class="card text-black">
+              <% if product.display_picture.attached? %>
+                <%= image_tag product.display_picture, class: "product-image" %>
+              <% else %>
+                <p class="card-text mt-3">No image available for this Product!</p>
+              <% end %>
+
+              <div class="card-body">
+                <div class="text-center mt-1">
+                  <h4 class="card-title"><%= product.title %></h4>
+                  <h6 class="text-primary mb-1 pb-3">Price: <%= number_to_currency(product.price, unit: '$') %></h6>
+                </div>
+              </div>
+              
+              <div class="d-flex flex-row">
+                <a href="<%= product_path(product) %>" class="btn btn-primary flex-fill me-1" data-mdb-ripple-color="dark">View Details</a>
+                <%= button_to 'Add to Cart', add_to_cart_cart_path(current_user, product_id: product.id), class: 'btn btn-danger flex-fill ms-1' %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
