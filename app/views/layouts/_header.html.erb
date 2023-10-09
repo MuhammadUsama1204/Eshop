@@ -1,9 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-blue custom-navbar" style="background-color:Gray; padding: 10px;">
   <a class="navbar-brand" href="/#">EShop</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
@@ -27,10 +26,10 @@
 
     <ul class="navbar-nav ml-auto">
       <% if @cart && @cart.line_items.any? %>
-        <%= link_to 'Your Cart', cart_path(@cart), class: 'btn ml-2' %>
+        <%= link_to raw('<i class="fad fa-cart-arrow-down fa-flip" style="--fa-primary-color: #800000	; --fa-secondary-color: #800000; font-size: 34px; margin-right: 10px;"></i>'), cart_path(@cart) %>
       <% end %>
       <% if user_signed_in? %>
-        <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-danger ml-auto" %>
+        <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-danger ml-2" %>
       <% end %>
     </ul>
   </div>
