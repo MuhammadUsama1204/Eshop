@@ -30,7 +30,7 @@
         </div>
         <% if current_user.is_admin? || current_user.is_staff? %>
           <div class="btn-group" role="group" aria-label="Product Actions">
-            <%= button_to "Edit", edit_product_path, class: 'btn btn-primary btn-lg' %>
+           <%= button_to "Edit", edit_product_path(@product), method: :get, class: 'btn btn-primary btn-lg' %>
             <span class="mx-2"></span> 
             <%= button_to raw('<i class="fas fa-trash-alt"></i>'), product_path(@product), class: 'btn btn-danger btn-remove btn-lg', method: :delete, data: { turbo_confirm: "Are you sure?" } %>
           </div>
