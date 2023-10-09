@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-blue custom-navbar" style="background-color:Gray; padding: 10px;">
-  <a class="navbar-brand" href="/#">EShop</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-blue custom-navbar" style="background-color:black; padding: 10px;">
+  <a class="navbar-brand" href="/#"style="color: white;">EShop</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -7,26 +7,26 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <% if user_signed_in? %>
-          <a class="nav-link" href="/products">Products <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/products" style="color: white;">Products <span class="sr-only">(current)</span></a>
         <% end %>
       </li>
 
       <li class="nav-item active">
         <% if user_signed_in? && (current_user.is_staff? || current_user.is_admin?) %>
-          <%= link_to "Users", users_path, class: "nav-link" %>
+          <%= link_to "Users", users_path, class: "nav-link", style: "color: white;" %>
         <% end %>
       </li>
 
       <li class="nav-item active">
         <% if user_signed_in? %>
-          <%= link_to "Add new Product", new_product_path, class: "nav-link" %>
+          <%= link_to "Add new Product", new_product_path, class: "nav-link", style: "color: white;" %>
         <% end %>
       </li>
     </ul>
 
     <ul class="navbar-nav ml-auto">
       <% if @cart && @cart.line_items.any? %>
-        <%= link_to raw('<i class="fad fa-cart-arrow-down fa-flip" style="--fa-primary-color: #800000	; --fa-secondary-color: #800000; font-size: 34px; margin-right: 10px;"></i>'), cart_path(@cart) %>
+        <%= link_to raw('<i class="fad fa-cart-arrow-down fa-flip" style="--fa-primary-color: white	; --fa-secondary-color: white; font-size: 34px; margin-right: 10px;"></i>'), cart_path(@cart) %>
       <% end %>
       <% if user_signed_in? %>
         <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-danger ml-2" %>
