@@ -11,14 +11,14 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-<body>
-  <body style="background-image: url('<%= asset_path('background.jpg') %>'); background-size: cover;">
-		<%=render partial: "layouts/header"%>
-			<div style="text-align: center">
-				<h1>Welcome to My EShop App</h1>
-				<p class="notice"><%=notice%></p>
-				<p class="alert"><%=alert%></p>
-				<%= yield %>
-			</div>
+  <body>
+    <body style="background-image: url('<%= asset_path('background.jpg') %>'); background-size: cover;">
+    <%=render partial: "layouts/header"%>
+    <div style="text-align: center">
+      <h1>Welcome to My EShop App</h1>
+      <p class="notice"><%=notice%></p>
+      <p class="alert"><%=alert%></p>
+      <%= yield %>
+    </div>
 	</body>
 </html>
