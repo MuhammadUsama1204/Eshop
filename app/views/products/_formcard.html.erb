@@ -9,7 +9,7 @@
         <div class="col-md-4">
           <div class="card mb-3">
             <% if product.display_picture.attached? %>
-              <%= image_tag product.display_picture, width: 350, height: 250, class: "product-image" %>
+              <%= image_tag product.display_picture, class: "product-image" %>
             <% else %>
               <p class="card-text mt-3">No image available for this Product!</p>
             <% end %>
