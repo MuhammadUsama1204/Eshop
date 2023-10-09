@@ -7,7 +7,9 @@
     <%= form.label :email %><br>
     <%= form.email_field :email %>
   </div>
-  <div>
+   <div >
     <%= render "role_form", user: @user %>
+    <span class="mx-1"></span> 
+	  <%= button_to "back", user_path, class: 'btn btn-primary btn-md' %>
   </div>
 <% end %>
