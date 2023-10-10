@@ -18,7 +18,7 @@
       </li>
 
       <li class="nav-item active">
-        <% if user_signed_in? %>
+        <% if user_signed_in? && controller.controller_name == 'products' && (current_user.is_staff? || current_user.is_admin?) %>
           <%= link_to "Add Product", new_product_path, class: "nav-link", style: "color: white;" %>
         <% end %>
       </li>
