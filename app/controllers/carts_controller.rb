@@ -12,7 +12,7 @@ class CartsController < ApplicationController
 		else
 			@line_item.quantity = 1
 		end
-	
+
 		if @line_item.save
 			redirect_to products_path, notice: "#{@product.title} added to cart."
 		else
