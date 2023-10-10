@@ -25,11 +25,17 @@
     </ul>
 
     <ul class="navbar-nav ml-auto">
-      <% if @cart && @cart.line_items.any? %>
-        <%= link_to raw('<i class="fad fa-cart-arrow-down fa-flip" style="--fa-primary-color: white	; --fa-secondary-color: white; font-size: 34px; margin-right: 10px;"></i>'), cart_path(@cart) %>
-      <% end %>
       <% if user_signed_in? %>
-        <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-danger ml-2" %>
+        <div class="user-details">
+          <div class="user-icon"><i class="fas fa-user icon-black"></i></div>
+          <span><%= current_user.username %></span>
+        </div>
+
+      <% if @cart && @cart.line_items.any? %>
+        <%= link_to raw('<i class="fad fa-cart-arrow-down fa-flip" style="--fa-primary-color: white	; --fa-secondary-color: white; font-size: 34px; margin: 8px;"></i>'), cart_path(@cart) %>
+      <% end %>
+      
+        <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-danger ml-2",style:"margin: 5px;" %>
       <% end %>
     </ul>
   </div>
