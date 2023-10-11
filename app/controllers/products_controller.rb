@@ -1,8 +1,10 @@
 class ProductsController < ApplicationController
+  include PaginationCollectionHelper
+  
   before_action :find_product, only: %i[show edit update destroy]
 
   def index
-    @paginate_products = paginate_collection(Product.all, :page, Product::PER_PAGE)
+    @paginate_products = pagination_collection(Product.all, :page, Product::PER_PAGE)
     @products = Product.searchFilter(@paginate_products, params)
   end
 
