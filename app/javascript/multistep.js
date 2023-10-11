@@ -5,7 +5,6 @@ document.addEventListener('turbo:load', function() {
     ['step-1', 'next-step-1', null],
     ['step-2', 'next-step-2', 'prev-step-2'],
     ['step-3', 'next-step-3', 'prev-step-3'],
-    ['step-4', 'next-step-4', 'prev-step-4'],
   ];
 
   for (let i = 0; i < stepSets.length; i++) {
