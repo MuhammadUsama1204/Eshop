@@ -20,8 +20,10 @@
           <div class="product-id border"><h3>Item Id: <%= @product.id %></h3></div>
 
           <div class="product-price border"><h3>Price: <%= number_to_currency(@product.price) %></h3></div>
-
-          <div class="product-quantity border"><h3 class="card-text">Quantity: <%= @product.quantity_in_stock %></h3></div>
+          
+          <% if @product.quantity_in_stock > 0 %>
+            <div class="product-quantity border"><h3 class="card-text">Quantity: <%= @product.quantity_in_stock %></h3></div>
+          <% end %>
 
           <div class="product-action border"><h3 class="card-text">Availability: <%= @product.quantity_in_stock > 0 ? "In stock" : "Out of stock" %></h3></div>
         </div>
