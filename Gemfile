@@ -6,9 +6,6 @@ ruby "3.2.2"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.8"
 
-# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem "sprockets-rails"
-
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
 
@@ -19,7 +16,12 @@ gem "puma", "~> 5.0"
 gem "importmap-rails"
 
 #jquery
+gem 'popper_js'
+gem 'bootsnap', '>= 1.4.2', require: false
+gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
+gem 'sassc-rails', '>= 2.1.0'
 gem 'jquery-rails'
+gem 'sprockets-rails', :require => 'sprockets/railtie'
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
@@ -42,14 +44,10 @@ gem "redis", "~> 4.0"
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
-# Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", require: false
-
-# Use Sass to process CSS
-gem "sassc-rails"
-
 #pagination
 gem 'will_paginate'
+gem 'will_paginate-bootstrap'
+
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -57,8 +55,8 @@ group :development, :test do
   gem "devise"
   gem "byebug"
   gem 'rolify'
-  gem 'letter_opener'
-  gem 'mailcatcher'
+  gem "letter_opener"
+
 end
 
 group :development do

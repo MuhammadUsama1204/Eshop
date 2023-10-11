@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
+  include PaginationCollectionHelper
+
   before_action :find_user, only: %i[show edit update destroy]
   before_action :authorize_user, only: %i[destroy edit update]
 
   def index
-    @users = User.all
-    @paginate_users = User.paginate(page: params[:page], per_page: User::PER_PAGE)
+    @users = pagination_collection(User.all, :page, User::PER_PAGE)
   end
 
   def new
