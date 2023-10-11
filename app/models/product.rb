@@ -3,7 +3,8 @@ class Product < ApplicationRecord
   has_many :carts, through: :line_items
   has_one_attached :display_picture
   validates :title, :price, :description, :display_picture, :quantity_in_stock, presence: true
-  validates :quantity_in_stock, numericality: { greater_than_or_equal_to: 0, message: "must be a non-negative number"}, on: [:create, :update]
+  validates :quantity_in_stock, numericality: { greater_than: 0, message: "must be at least one"}, on: [:create, :update]
+  validates :price, numericality: { greater_than_or_equal_to: 0, message: "must be at least 0"}, on: [:create, :update]
   PER_PAGE = 10;
   def self.searchFilter(products, params)
     products = products.where("title ILIKE ?", "%#{params[:search]}%") if params[:search].present?
