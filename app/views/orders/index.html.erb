@@ -9,6 +9,7 @@
         <td scope="col">Order id</td>
         <td scope="col">Customer</td>
         <td scope="col">Email</td>
+        <td scope="col">Status</td>
       </tr>
 
     </thead>
@@ -24,6 +25,9 @@
           </td>
           <td>
             <%= order.user.email %>
+          </td>
+          <td>
+            <%= order.status %>
           </td>
         </tr>
       <% end %>
