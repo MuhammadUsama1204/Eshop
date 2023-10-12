@@ -5,7 +5,7 @@ class Order < ApplicationRecord
   belongs_to :cart
   
   attribute :order_date, default: -> { Time.current }
-  attribute :status, default: "Pending"
+  attribute :status, default: "Confirmed"
   attribute :payment_method, default: "Credit Card"
 
   def generate_order_number
