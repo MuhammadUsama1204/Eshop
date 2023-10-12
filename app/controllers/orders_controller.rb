@@ -1,8 +1,10 @@
 class OrdersController < ApplicationController
+  include PaginationCollectionHelper
+
   before_action :find_order, only: %i[show edit update destroy]
 
   def index
-    @orders = Order.all
+    @orders = pagination_collection(Order.all, :page, Order::PER_PAGE)
   end
 
   def new 
