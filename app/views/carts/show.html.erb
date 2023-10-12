@@ -40,6 +40,10 @@
       <% end %>
     </tbody>
   </table>
+    <div class="total-price-section">
+    <h4>Total Price:</h4>
+    <p><%= number_to_currency(@cart.line_items.sum { |line_item| line_item.price * line_item.quantity }) %></p>
+  </div>
   <%= link_to 'Continue Shopping', products_path, class: 'btn btn-primary btn-continue-shopping' %>
   <%= link_to 'Checkout', new_order_path, class: 'btn btn-primary btn-continue-shopping' %>
 </div>
