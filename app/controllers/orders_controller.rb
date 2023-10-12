@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     if @order.save
       redirect_to order_path(@order)
+      OrderMailer.order_confirmation(@order).deliver_now
     else
       render 'new'
     end
