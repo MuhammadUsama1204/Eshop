@@ -35,7 +35,7 @@
             </div>
           </td>
           <td class="align-middle product-price"><%= number_to_currency(line_item.price) %></td>
-          <td class="align-middle item-total "><%= number_to_currency(line_item.price) %></td>
+          <td class="align-middle item-total "><%= number_to_currency(line_item.price*line_item.quantity) %></td>
         </tr>
       <% end %>
     </tbody>
