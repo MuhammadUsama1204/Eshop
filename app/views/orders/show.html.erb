@@ -18,6 +18,8 @@
 <p><strong>Total:</strong> $<%= subtotal %></p>
 <%= link_to 'Back to Products', products_path, class: 'btn btn-secondary' %>
 
+<%= link_to "Edit", edit_order_path %>
 <div style="display: inline-block;">
   <%= button_to "Destroy", order_path(@order), method: :delete, data: {turbo_confirm: "Are you sure?"} %>
 </div>
+        
