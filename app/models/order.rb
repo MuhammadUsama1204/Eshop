@@ -3,6 +3,10 @@ class Order < ApplicationRecord
 
   belongs_to :user
   belongs_to :cart
+  
+  attribute :order_date, default: -> { Time.current }
+  attribute :status, default: "Pending"
+  attribute :payment_method, default: "Credit Card"
 
   def generate_order_number
     while true
