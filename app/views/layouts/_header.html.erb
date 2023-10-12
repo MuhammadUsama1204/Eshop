@@ -22,6 +22,11 @@
           <%= link_to "Add Product", new_product_path, class: "nav-link", style: "color: white;" %>
         <% end %>
       </li>
+      <li class="nav-item active">
+        <% if user_signed_in? && current_user.is_admin? %>
+          <%= link_to "Orders", orders_path, class: "nav-link", style: "color: white;" %>
+        <% end %>
+      </li>
     </ul>
 
     <ul class="navbar-nav ml-auto">
