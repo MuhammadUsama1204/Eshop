@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   before_action :find_order, only: %i[show edit update destroy]
 
   def index
-    @orders = pagination_collection(Order.all, :page, Order::PER_PAGE)
+    @orders = pagination_collection(Order.all, :page, Order::PER_PAGE).order(created_at: :desc)
   end
 
   def new 
