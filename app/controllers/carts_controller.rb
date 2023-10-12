@@ -29,4 +29,9 @@ class CartsController < ApplicationController
     end
     redirect_to cart_path
   end
+
+	def destroy
+    @cart = Cart.find(params[:id])
+		@cart.soft_delete
+  end
 end
