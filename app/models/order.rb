@@ -1,4 +1,6 @@
 class Order < ApplicationRecord
+  PER_PAGE = 10;
+
   before_create :generate_order_number
 
   belongs_to :user
