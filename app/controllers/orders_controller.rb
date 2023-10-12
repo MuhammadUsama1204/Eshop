@@ -17,4 +17,9 @@ class OrdersController < ApplicationController
     end
   end
 
+  private 
+
+  def order_params
+    params.require(:order).permit(:payment_method, :user_id, :cart_id, :billing_address, :shipping_address)
+  end
 end
