@@ -8,11 +8,6 @@
     </div>
 
     <div class="field">
-      <%= f.label :payment_method %>
-      <%= f.text_field :payment_method %>
-    </div>
-
-    <div class="field">
       <%= f.label :billing_address %>
       <%= f.text_area :billing_address %>
     </div>
@@ -21,6 +16,23 @@
       <%= f.label :shipping_address %>
       <%= f.text_area :shipping_address %>
     </div>
+
+    <div class="field">
+      <%= f.label :payment_method %>
+      <br>
+      <%= f.radio_button :payment_method, 'Credit Card' %> Credit Card
+      <%= f.radio_button :payment_method, 'Cash on Delivery' %> Cash on Delivery
+    </div>
+
+    <% if current_user.is_admin?%>
+      <div class="field">
+        <%= f.label :status %>
+        <br>
+        <%= f.radio_button :status, 'Dispatched' %> Dispatched
+        <%= f.radio_button :status, 'Delivered' %> Delivered
+        <%= f.radio_button :status, 'Cancelled' %> Cancelled
+      </div>
+    <% end %>
     
     <div>
       <div class="actions"><%= f.submit "place Order", class: 'btn btn-primary' %></div><br>
