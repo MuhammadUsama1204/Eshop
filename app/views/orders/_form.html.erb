@@ -21,7 +21,10 @@
       <%= f.label :shipping_address %>
       <%= f.text_area :shipping_address %>
     </div>
-
-    <div class="actions"><%= f.submit "place Order", class: 'btn btn-primary' %></div>
+    
+    <div>
+      <div class="actions"><%= f.submit "place Order", class: 'btn btn-primary' %></div><br>
+      <Span><%= link_to 'Your cart', cart_path(@cart), class: 'btn btn-primary' %></span>
+    </div>
   <% end %>
 </div>
