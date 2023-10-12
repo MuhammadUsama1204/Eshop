@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  before_action :find_order, only: %i[show edit update destroy]
+
   def index
     @orders = Order.all
   end
@@ -9,12 +11,9 @@ class OrdersController < ApplicationController
     @order.cart = current_user.cart 
   end
   
-  def edit
-    @order = Order.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @order = Order.find(params[:id])
     if @order.update(order_params)
       redirect_to orders_path, notice: 'Order was successfully updated.'
     else
@@ -32,12 +31,9 @@ class OrdersController < ApplicationController
     end
   end
 
-  def show
-    @order = Order.find(params[:id])
-  end
+  def show; end
 
   def destroy
-    @order = Order.find(params[:id])
     if @order.destroy
       redirect_to orders_path, notice: 'Order was successfully destroyed.'
     else
@@ -46,6 +42,10 @@ class OrdersController < ApplicationController
   end
 
   private 
+
+  def find_order
+    @order = Order.find(params[:id])
+  end
 
   def order_params
     params.require(:order).permit(:payment_method, :user_id, :cart_id, :billing_address, :shipping_address, :status)
