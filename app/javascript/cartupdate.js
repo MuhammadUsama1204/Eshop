@@ -9,28 +9,40 @@ document.addEventListener('turbo:load', function() {
 			this.price = parseFloat(this.priceElement.textContent.replace('$', '').replace(',', ''));
 		}
 
-	updateQuantity(action) {
-		if (action === 'increment') {
-			this.quantity++;
-		} else if (action === 'decrement' && this.quantity > 1) {
-			this.quantity--;
+		updateQuantity(action) {
+			if (action === 'increment') {
+				this.quantity++;
+			} else if (action === 'decrement' && this.quantity > 1) {
+				this.quantity--;
+			}
+			this.quantityElement.textContent = this.quantity;
+			this.updateTotal(); 
+			updateCartTotal();
 		}
-		this.quantityElement.textContent = this.quantity;
-		this.updateTotal();
+
+		updateTotal() {
+			const totalPrice = this.quantity * this.price;
+			this.totalElement.textContent = `$${totalPrice.toFixed(2)}`;
+		}
 	}
 
-	updateTotal() {
-		const totalPrice = this.quantity * this.price;
-		this.totalElement.textContent = `$${totalPrice.toFixed(2)}`;
+	// Get all quantity buttons with the class 'quantity-btn'
+	const quantityButtons = document.querySelectorAll('.quantity-btn');
+
+	// Create CartItem objects for each cart row
+	const cartItems = Array.from(document.querySelectorAll('.cart-row')).map((element) => new CartItem(element));
+
+	// Function to update the cart total
+	function updateCartTotal() {
+		let cartTotal = 0;
+		cartItems.forEach((item) => {
+			cartTotal += item.quantity * item.price;
+		});
+		const totalPriceElement = document.querySelector('.total-price-section p');
+		totalPriceElement.textContent = `$${cartTotal.toFixed(2)}`;
 	}
-}
-// Get all quantity buttons with the class 'quantity-btn'
-const quantityButtons = document.querySelectorAll('.quantity-btn');
 
-// Create CartItem objects for each cart row
-const cartItems = Array.from(document.querySelectorAll('.cart-row')).map((element) => new CartItem(element));
-
-// Loop through each quantity button and add click event listener
+	// Loop through each quantity button and add click event listener
 	quantityButtons.forEach((button) => {
 		button.addEventListener('click', (event) => {
 			const action = event.target.getAttribute('data-action');
