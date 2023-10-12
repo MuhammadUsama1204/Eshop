@@ -1,4 +1,4 @@
-<% if @orders.empty? %>
+<% if @orders.nil? %>
   <h1>No Order</h1>
 <% else %>
   <h1>Emails of all Customer Orders click Order_id to see more detail  </h1>
@@ -35,3 +35,10 @@
     </tbody>
   </table>
 <% end %>
+<nav aria-label="...">
+  <ul class="pagination justify-content-center">
+    <li class="page-item">
+      <%= will_paginate @orders %>
+    </li>
+  </ul>
+</nav>
