@@ -23,6 +23,15 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
+  def destroy
+    @order = Order.find(params[:id])
+    if @order.destroy
+      redirect_to orders_path, notice: 'Order was successfully destroyed.'
+    else
+      redirect_to order_path, notice: 'Order cannot destroyed!'
+    end
+  end
+
   private 
 
   def order_params
