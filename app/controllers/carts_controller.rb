@@ -20,6 +20,20 @@ class CartsController < ApplicationController
 		end
 	end
 
+  def update_quantity
+    @product = Product.find(params[:id])
+    @line_item = @cart.line_items.find_by(product: @product)
+    case params[:data_action]
+      when 'increment'
+        @line_item.quantity += 1
+      when 'decrement'
+        if @line_item.quantity > 1
+          @line_item.quantity -= 1
+        end
+      end
+    @line_item.save
+  end
+ 
 	def remove_from_cart
     @line_item = LineItem.find(params[:id])    
     if @cart.line_items.empty?
@@ -28,10 +42,5 @@ class CartsController < ApplicationController
       @line_item.destroy
     end
     redirect_to cart_path
-  end
-
-	def destroy
-    @cart = Cart.find(params[:id])
-		@cart.soft_delete
   end
 end
