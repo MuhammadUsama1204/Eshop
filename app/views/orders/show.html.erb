@@ -10,7 +10,7 @@
   <% subtotal = 0 %>
   <% @order.user.cart.line_items.each do |line_item| %>
     <li>
-      <%= "#{line_item.quantity} x $#{cart.line_item.price} = $#{cart.line_item.quantity * cart.line_item.price}" %>
+      <%= "#{line_item.quantity} x $#{line_item.price} = $#{line_item.quantity * line_item.price}" %>
       <% subtotal += line_item.quantity * line_item.price %>
     </li>
   <% end %>
