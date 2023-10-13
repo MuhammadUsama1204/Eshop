@@ -15,4 +15,5 @@ Rails.application.routes.draw do
       post 'add_to_cart/:product_id', to: 'carts#add_to_cart', as: 'add_to_cart'
     end
   end
+  post 'update_quantity/:id', to: 'carts#update_quantity', as: 'update_quantity'
 end
