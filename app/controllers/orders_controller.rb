@@ -26,9 +26,9 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     if @order.save
-      @order.cart.destroy
       redirect_to order_path(@order)
       OrderMailer.order_confirmation(@order).deliver_now
+      @order.cart.soft_delete
     else
       render 'new'
     end
