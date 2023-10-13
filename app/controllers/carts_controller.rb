@@ -25,7 +25,9 @@ class CartsController < ApplicationController
     @line_item = @cart.line_items.find_by(product: @product)
     case params[:data_action]
       when 'increment'
-        @line_item.quantity += 1
+        if @line_item.quantity < @product.quantity_in_stock
+          @line_item.quantity += 1
+        end
       when 'decrement'
         if @line_item.quantity > 1
           @line_item.quantity -= 1
