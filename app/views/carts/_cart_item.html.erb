@@ -1,0 +1,25 @@
+<tr class="cart-row">
+  <td>
+    <%= link_to raw('<i class="fas fa-trash-alt"></i>'), remove_from_cart_cart_path(line_item), method: :delete, class: 'btn btn-danger btn-remove' %>
+  </td>
+<td class="align-middle product-id" data-product-id="<%= line_item.product.id %>"><%= line_item.product.id %></td>
+  <td class="align-middle cart-item-image-cell">
+    <% if line_item.product.display_picture.attached? %>
+      <%= image_tag line_item.product.display_picture, width: 80, height: 65, class: "cart-item-image rounded-circle" %>
+    <% else %>
+      <div class="no-image-container">
+        <p class="card-text mt-3">No image available for this Product!</p>
+      </div>
+    <% end %>
+  </td>
+  <td class="align-middle product-title"><%= line_item.product.title %></td>
+  <td class="align-middle cart-quantity-cell">
+    <div class="quantity-control">
+  <button class="btn btn-sm btn-primary quantity-btn" data-action="decrement" onclick="updateQuantity('decrement')">-</button>
+      <span class="quantity"><%= line_item.quantity %></span>
+  <button class="btn btn-sm btn-primary quantity-btn" data-action="increment" onclick="updateQuantity('increment')">+</button>
+    </div>
+  </td>
+  <td class="align-middle product-price"><%= number_to_currency(line_item.price) %></td>
+  <td class="align-middle item-total "><%= number_to_currency(line_item.price * line_item.quantity) %></td>
+</tr>
