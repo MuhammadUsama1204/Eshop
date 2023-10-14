@@ -28,7 +28,11 @@
               
               <div class="d-flex flex-row">
                 <a href="<%= product_path(product) %>" class="btn btn-primary flex-fill me-1" data-mdb-ripple-color="dark">View Details</a>
-                <%= button_to 'Add to Cart', add_to_cart_cart_path(current_user, product_id: product.id), class: 'btn btn-danger flex-fill ms-1' %>
+                <% if product.quantity_in_stock? %>
+                  <%= button_to 'Add to Cart', add_to_cart_cart_path(current_user, product_id: product.id), class: 'btn btn-danger flex-fill ms-1' %>
+                <% else %>
+                  <span style="color: red;">Out of Stock</span>
+                <% end %>
               </div>
             </div>
           </div>
