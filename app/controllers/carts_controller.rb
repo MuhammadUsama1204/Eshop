@@ -9,11 +9,14 @@ class CartsController < ApplicationController
 		@line_item.price = @product.price
 		if @line_item.persisted?
 			@line_item.increment(:quantity)
+      @product.quantity_in_stock -=1 #update in actual quantity
 		else
 			@line_item.quantity = 1
+      @product.quantity_in_stock -=1 #update in actual quantity
 		end
 
 		if @line_item.save
+      @product.save
 			redirect_to products_path, notice: "#{@product.title} added to cart."
 		else
 			render :products_path, notice: "#{@product.title} failed to add to cart."
@@ -25,15 +28,18 @@ class CartsController < ApplicationController
     @line_item = @cart.line_items.find_by(product: @product)
     case params[:data_action]
       when 'increment'
-        if @line_item.quantity < @product.quantity_in_stock
+        if @line_item.quantity < @product.quantity_in_stock && @product.quantity_in_stock !=0
           @line_item.quantity += 1
+          @product.quantity_in_stock -=1 #update in actual quantity
         end
       when 'decrement'
         if @line_item.quantity > 1
           @line_item.quantity -= 1
+          @product.quantity_in_stock +=1 #update in actual quantity
         end
       end
     @line_item.save
+    @product.save
   end
  
 	def remove_from_cart
