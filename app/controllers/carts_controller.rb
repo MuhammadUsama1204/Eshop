@@ -9,14 +9,16 @@ class CartsController < ApplicationController
 		@line_item.price = @product.price
 		if @line_item.persisted?
 			@line_item.increment(:quantity)
-      @product.quantity_in_stock -=1 #update in actual quantity
 		else
 			@line_item.quantity = 1
-      @product.quantity_in_stock -=1 #update in actual quantity
 		end
 
-		if @line_item.save
+    if @product.quantity_in_stock>0
+      @product.quantity_in_stock -=1 #update in actual quantity
       @product.save
+    end
+    
+		if @line_item.save
 			redirect_to products_path, notice: "#{@product.title} added to cart."
 		else
 			render :products_path, notice: "#{@product.title} failed to add to cart."
