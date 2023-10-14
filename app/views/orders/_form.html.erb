@@ -1,42 +1,62 @@
-<div class='container'>
-  <%= form_for @order do |f| %>
-    <div class="field">
-      <%= f.label :user_id %>
-      <%= f.text_field :user_id, readonly: true %>
-      <%= f.label :cart_id %>
-      <%= f.text_field :cart_id, readonly: true %>
-    </div>
-
-    <div class="field">
-      <%= f.label :billing_address %>
-      <%= f.text_area :billing_address %>
-    </div>
-
-    <div class="field">
-      <%= f.label :shipping_address %>
-      <%= f.text_area :shipping_address %>
-    </div>
-
-    <div class="field">
-      <%= f.label :payment_method %>
-      <br>
-      <%= f.radio_button :payment_method, 'Credit Card' %> Credit Card
-      <%= f.radio_button :payment_method, 'Cash on Delivery' %> Cash on Delivery
-    </div>
-
-    <% if current_user.is_admin?%>
-      <div class="field">
-        <%= f.label :status %>
-        <br>
-        <%= f.radio_button :status, 'Dispatched' %> Dispatched
-        <%= f.radio_button :status, 'Delivered' %> Delivered
-        <%= f.radio_button :status, 'Cancelled' %> Cancelled
+<%= form_for @order do |f| %>
+  <div class="container">
+    <h2>Place Your Order</h2>
+    <div class="row">
+      <div class="col-md-6">
+       <div class="form-group">
+          <%= f.label :sub_total, "Name" %>
+          <%= f.text_field :name, class: "form-control", placeholder: "Enter Your Name" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :contact_no, "Contact Number" %>
+          <%= f.text_field :contact_no, class: "form-control", placeholder: "Enter contact number" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :billing_address, "Billing Address" %>
+          <%= f.text_area :billing_address, class: "form-control", rows: 3 %>
+        </div>
+        <div class="form-group">
+          <%= f.label :shipping_address, "Shipping Address" %>
+          <%= f.text_area :shipping_address, class: "form-control", rows: 3 %>
+        </div>
+        <div class="form-group">
+          <%= f.label :payment_method %>
+          <br>
+          <%= f.radio_button :payment_method, 'Credit Card' %> Credit Card
+          <%= f.radio_button :payment_method, 'Cash on Delivery' %> Cash on Delivery
+        </div>
+        <% if current_user.is_admin?%>
+          <div class="form-group">
+            <%= f.label :status %>
+            <br>
+            <%= f.radio_button :status, 'Dispatched' %> Dispatched
+            <%= f.radio_button :status, 'Delivered' %> Delivered
+            <%= f.radio_button :status, 'Cancelled' %> Cancelled
+          </div>
+        <% end %>
       </div>
-    <% end %>
-    
+      <div class="col-md-6">
+       <div class="form-group">
+          <%= f.label :order_number, "Order Number" %>
+          <%= f.text_field :order_number, readonly: true, class: "form-control", placeholder: "Enter order number" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :order_date, "Order Date" %>
+          <%= f.datetime_local_field :order_date, readonly: true, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :user_id, "User ID" %>
+          <%= f.text_field :user_id, readonly: true, class: "form-control", placeholder: "Enter user ID" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :cart_id, "Cart ID" %>
+          <%= f.text_field :cart_id, readonly: true, class: "form-control", placeholder: "Enter cart ID" %>
+        </div>
+      </div>
+    </div>
     <div>
       <div class="actions"><%= f.submit "place Order", class: 'btn btn-primary' %></div><br>
-      <Span><%= link_to 'Your cart', cart_path(@cart), class: 'btn btn-primary' %></span>
+      <%= link_to 'Your cart', cart_path(@cart), class: 'btn btn-primary' %>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>
