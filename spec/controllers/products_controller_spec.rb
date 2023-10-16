@@ -4,7 +4,7 @@ RSpec.describe ProductsController, type: :controller do
   let(:product) { create(:product) }
 
   context 'Index' do
-    it 'returns true' do
+    it 'returns with a success status' do
       get :index
       expect(response).to be_successful
     end
@@ -14,4 +14,12 @@ RSpec.describe ProductsController, type: :controller do
       expect(assigns(:products)).to eq([product])
     end
   end
+
+  context 'Show' do
+    it 'returns with a success status' do
+      get :show, params: { id: product.id }
+      expect(response).to be_successful
+    end
+  end
+
 end
