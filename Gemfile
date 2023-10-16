@@ -57,6 +57,7 @@ group :development, :test do
   gem 'rolify'
   gem "letter_opener"
   gem 'discard'
+  gem 'rspec-rails'
 
 end
 
