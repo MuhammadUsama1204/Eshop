@@ -10,6 +10,7 @@
         <td scope="col">Customer</td>
         <td scope="col">Email</td>
         <td scope="col">Status</td>
+        <td scope="col">Action</td>
       </tr>
 
     </thead>
@@ -28,6 +29,16 @@
           </td>
           <td>
             <%= order.status %>
+          </td>
+          <td>
+             
+<%= link_to "Edit", edit_order_path(order), class: "btn btn-primary" %>
+          <div style="display: inline-block;">
+            <%= button_to "Destroy", order_path(order),class: "btn btn-danger", method: :delete, data: {
+                  turbo_confirm: "Are you sure?"
+                } %>
+          </div>
+     
           </td>
         </tr>
       <% end %>
