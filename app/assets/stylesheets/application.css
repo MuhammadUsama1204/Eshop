@@ -38,19 +38,40 @@
 }
 body{margin-top:20px;
 	background-color:#eee;
-	}
-	
-	.card {
-			box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
-	}
-	.card {
-			position: relative;
-			display: flex;
-			flex-direction: column;
-			min-width: 0;
-			word-wrap: break-word;
-			background-color: #fff;
-			background-clip: border-box;
-			border: 0 solid rgba(0,0,0,.125);
-			border-radius: 1rem;
-	}
+}
+.card {
+	box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
+}
+.card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+	word-wrap: break-word;
+	background-color: #fff;
+	background-clip: border-box;
+	border: 0 solid rgba(0,0,0,.125);
+	border-radius: 1rem;
+}
+.login-container {
+	background-color: rgba(255, 255, 255, 0.9);
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+h2 {
+	text-align: center;
+}
+.form-control {
+  border: 2px solid #007BFF; /* Blue border for form elements */
+  border-radius: 5px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #000000; /* Text color */
+}
+.field label {
+	display: block;
+}
+.actions {
+	text-align: center;
+}
