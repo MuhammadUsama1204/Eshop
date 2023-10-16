@@ -31,14 +31,10 @@
             <%= order.status %>
           </td>
           <td>
-             
-<%= link_to "Edit", edit_order_path(order), class: "btn btn-primary" %>
-          <div style="display: inline-block;">
-            <%= button_to "Destroy", order_path(order),class: "btn btn-danger", method: :delete, data: {
-                  turbo_confirm: "Are you sure?"
-                } %>
-          </div>
-     
+            <%= link_to "Edit", edit_order_path(order), class: "btn btn-primary" %>
+            <div style="display: inline-block;">
+              <%= button_to "Destroy", order_path(order),class: "btn btn-danger", method: :delete, data: {turbo_confirm: "Are you sure?"} %>
+            </div>
           </td>
         </tr>
       <% end %>

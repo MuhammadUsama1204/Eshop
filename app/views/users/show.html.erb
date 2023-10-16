@@ -31,11 +31,9 @@
         </th>
 
         <th>
-          <%= link_to "Edit", edit_user_path%>
+          <%= link_to "Edit", edit_user_path, class: "btn btn-primary"%>
           <div style="display: inline-block;">
-            <%= button_to "Destroy", user_path(@user), method: :delete, data: {
-                  turbo_confirm: "Are you sure?"
-                } %>
+            <%= button_to "Destroy", user_path(@user), class: "btn btn-danger", method: :delete, data: {turbo_confirm: "Are you sure?"} %>
           </div>
         </th>
       </tr>
