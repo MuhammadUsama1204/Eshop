@@ -3,4 +3,9 @@ class OrderMailer < ApplicationMailer
     @order = order
     mail(to: @order.user.email, subject: 'Order Confirmation')
   end
+
+  def status_update(order, new_status)
+    @order = order
+    mail(to: @order.user.email, subject: 'Your Order Status Updated!')
+  end
 end
