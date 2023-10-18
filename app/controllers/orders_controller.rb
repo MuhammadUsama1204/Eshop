@@ -17,11 +17,13 @@ class OrdersController < ApplicationController
 
   def update
     if @order.update(order_params)
+      new_status = params[:status]
+      OrderMailer.status_update(@order, new_status).deliver_now
       redirect_to orders_path, notice: 'Order was successfully updated.'
     else
       render 'edit'
     end
-  end
+  end  
 
   def create
     @order = Order.new(order_params)
