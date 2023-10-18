@@ -6,9 +6,9 @@ class Cart < ApplicationRecord
   
   has_one :order
 
-  scope :active, -> { where(deleted: false) }
+  scope :active, -> { where( deleted: false ) }
 
   def soft_delete
-    update(deleted: true)
+    update( deleted: true )
   end
 end

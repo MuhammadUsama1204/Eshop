@@ -13,8 +13,8 @@ class CartsController < ApplicationController
 			@line_item.quantity = 1
 		end
 
-    if @product.quantity_in_stock>0
-      @product.quantity_in_stock -=1 #update in actual quantity
+    if @product.quantity_in_stock > 0
+      @product.quantity_in_stock -= 1 #update in actual quantity
       @product.save
     end
     
