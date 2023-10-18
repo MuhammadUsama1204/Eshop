@@ -7,12 +7,12 @@
 
     <div class="form-group mr-2">
       <%= label_tag "min_price", "Min Price:", class: "mr-2" %>
-      <%= text_field_tag "min_price", params[:min_price], class: "form-control", placeholder: "Enter Min Price" %>
+      <%= number_field_tag "min_price", params[:min_price], class: "form-control", placeholder: "Enter Min Price" %>
     </div>
 
     <div class="form-group mr-2">
       <%= label_tag "max_price", "Max Price:", class: "mr-2" %>
-      <%= text_field_tag "max_price", params[:max_price], class: "form-control", placeholder: "Enter Max Price" %>
+      <%= number_field_tag "max_price", params[:max_price], class: "form-control", placeholder: "Enter Max Price" %>
     </div>
 
     <%= submit_tag "Filter", class: "btn btn-primary" %>
