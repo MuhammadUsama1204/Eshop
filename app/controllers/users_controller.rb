@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   before_action :authorize_user, only: %i[destroy edit update]
 
   def index
-    @users = pagination_collection(User.all, :page, User::PER_PAGE)
+    @users = pagination_collection(User.all, :page, User::PER_PAGE).order(created_at: :desc)
   end
 
   def new

@@ -6,8 +6,8 @@ class Product < ApplicationRecord
 
   has_one_attached :display_picture
 
-  validates :title, :price, :description, :display_picture, :quantity_in_stock, presence: true
-  validates :quantity_in_stock, numericality: { greater_than: 0, message: "must be at least one"}, on: [:create, :update]
+  validates :title, :price, :description, :quantity_in_stock, presence: true
+  validates :quantity_in_stock, numericality: { greater_than: 0, message: "must be at least one"}, on: [:create]
   validates :price, numericality: { greater_than_or_equal_to: 0, message: "must be at least 0"}, on: [:create, :update]
 
   def self.searchFilter(products, params)

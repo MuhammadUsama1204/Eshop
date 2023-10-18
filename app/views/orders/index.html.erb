@@ -1,0 +1,51 @@
+<% if @orders.nil? %>
+  <h1>No Order</h1>
+<% else %>
+  <h1>Emails of all Customer Orders click Order_id to see more detail  </h1>
+  <table class="table table-striped">
+    <thead>
+
+      <tr>
+        <td scope="col">Order id</td>
+        <td scope="col">Customer</td>
+        <td scope="col">Email</td>
+        <td scope="col">Status</td>
+        <td scope="col">Action</td>
+      </tr>
+
+    </thead>
+    <tbody>
+
+      <% @orders.each do |order| %>
+        <tr>
+        <td>
+            <%= link_to order.order_number, order_path(order) %>
+          </td>
+          <td>
+            <%= order.user.username %>
+          </td>
+          <td>
+            <%= order.user.email %>
+          </td>
+          <td>
+            <%= order.status %>
+          </td>
+          <td>
+            <%= link_to "Edit", edit_order_path(order), class: "btn btn-primary" %>
+            <div style="display: inline-block;">
+              <%= button_to "Destroy", order_path(order),class: "btn btn-danger", method: :delete, data: {turbo_confirm: "Are you sure?"} %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+
+    </tbody>
+  </table>
+<% end %>
+<nav aria-label="...">
+  <ul class="pagination justify-content-center">
+    <li class="page-item">
+      <%= will_paginate @orders %>
+    </li>
+  </ul>
+</nav>

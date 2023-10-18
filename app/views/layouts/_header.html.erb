@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-blue custom-navbar" style="background-color:black; padding: 10px;">
+<nav class="navbar navbar-expand-lg navbar-light bg-blue custom-navbar fixed-top" style="background-color:black; padding: 10px;">
   <a class="navbar-brand" href="/#"style="color: white;">EShop</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -22,6 +22,11 @@
           <%= link_to "Add Product", new_product_path, class: "nav-link", style: "color: white;" %>
         <% end %>
       </li>
+      <li class="nav-item active">
+        <% if user_signed_in? && current_user.is_admin? %>
+          <%= link_to "Orders", orders_path, class: "nav-link", style: "color: white;" %>
+        <% end %>
+      </li>
     </ul>
 
     <ul class="navbar-nav ml-auto">
@@ -31,7 +36,7 @@
           <span><%= current_user.username %></span>
         </div>
 
-      <% if @cart && @cart.line_items.any? %>
+      <% if @cart && @cart.line_items.any? && !@order %>
         <%= link_to raw('<i class="fad fa-cart-arrow-down fa-flip" style="--fa-primary-color: white	; --fa-secondary-color: white; font-size: 34px; margin: 8px;"></i>'), cart_path(@cart) %>
       <% end %>
       

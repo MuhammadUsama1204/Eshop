@@ -56,6 +56,10 @@ group :development, :test do
   gem "byebug"
   gem 'rolify'
   gem "letter_opener"
+  gem 'discard'
+  gem 'rspec-rails'
+  gem 'rails-controller-testing'
+  gem 'factory_bot_rails'
 
 end
 

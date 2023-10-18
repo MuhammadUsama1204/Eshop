@@ -13,6 +13,11 @@ class CartsController < ApplicationController
 			@line_item.quantity = 1
 		end
 
+    if @product.quantity_in_stock > 0
+      @product.quantity_in_stock -= 1 #update in actual quantity
+      @product.save
+    end
+    
 		if @line_item.save
 			redirect_to products_path, notice: "#{@product.title} added to cart."
 		else
@@ -20,6 +25,25 @@ class CartsController < ApplicationController
 		end
 	end
 
+  def update_quantity
+    @product = Product.find(params[:id])
+    @line_item = @cart.line_items.find_by(product: @product)
+    case params[:data_action]
+      when 'increment'
+        if @line_item.quantity < @product.quantity_in_stock && @product.quantity_in_stock !=0
+          @line_item.quantity += 1
+          @product.quantity_in_stock -=1 #update in actual quantity
+        end
+      when 'decrement'
+        if @line_item.quantity > 1
+          @line_item.quantity -= 1
+          @product.quantity_in_stock +=1 #update in actual quantity
+        end
+      end
+    @line_item.save
+    @product.save
+  end
+ 
 	def remove_from_cart
     @line_item = LineItem.find(params[:id])    
     if @cart.line_items.empty?
