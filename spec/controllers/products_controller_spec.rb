@@ -1,8 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe ProductsController, type: :controller do
-  let(:product) { create(:product) }
 
+  let(:user) { FactoryBot.create(:user, confirmed_at: Time.now, roles: [create(:role, role: 'Customer')]) }
+  let(:product) { FactoryBot.create(:product) }
+
+  before do
+    sign_in user
+  end
+  
   context 'Index' do
     it 'returns with a success status' do
       get :index
@@ -21,5 +27,5 @@ RSpec.describe ProductsController, type: :controller do
       expect(response).to be_successful
     end
   end
-
+  
 end
