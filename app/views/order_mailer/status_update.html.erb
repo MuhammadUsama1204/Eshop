@@ -1,3 +1,7 @@
 <h1>Order Status updated</h1>
-<p>Thank you for placing your order with us!</p>
-<p>Visit this link to check status: <%= link_to @order.order_number, order_url(@order.id) %></p>
+<% if @order.status == 'Cancelled' %>
+  <p>unfortunately Your Order is <%= @order.status %></p>
+<% else %>
+  <p>Thank you for placing your order with us! Your Order is <%= @order.status %></p>
+  <p>Visit this link to check status: <%= link_to @order.order_number, order_url(@order.id) %></p>
+<% end %>
