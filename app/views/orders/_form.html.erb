@@ -25,15 +25,6 @@
           <%= f.radio_button :payment_method, 'Credit Card' %> Credit Card
           <%= f.radio_button :payment_method, 'Cash on Delivery' %> Cash on Delivery
         </div>
-        <% if current_user.is_admin?%>
-          <div class="form-group">
-            <%= f.label :status %>
-            <br>
-            <%= f.radio_button :status, 'Dispatched' %> Dispatched
-            <%= f.radio_button :status, 'Delivered' %> Delivered
-            <%= f.radio_button :status, 'Cancelled' %> Cancelled
-          </div>
-        <% end %>
       </div>
       <div class="col-md-6">
         <div class="form-group">
@@ -48,6 +39,15 @@
           <%= f.label :cart_id, "Cart ID" %>
           <%= f.text_field :cart_id, readonly: true, class: "form-control", placeholder: "Enter cart ID" %>
         </div>
+        <% if current_user.is_admin?%>
+          <div class="form-group">
+            <%= f.label :status %>
+            <br>
+            <%= f.radio_button :status, 'Dispatched' %> Dispatched
+            <%= f.radio_button :status, 'Delivered' %> Delivered
+            <%= f.radio_button :status, 'Cancelled' %> Cancelled
+          </div>
+        <% end %>
       </div>
     </div>
     <div>
