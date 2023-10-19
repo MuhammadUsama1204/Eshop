@@ -13,7 +13,11 @@ Rails.application.routes.draw do
   resources :users  
   resources :products
   resources :line_items
-  resources :orders
+  resources :orders do
+    member do
+      get 'download_invoice'
+    end
+  end
   resources :carts do
     member do
       get 'remove_from_cart', to: 'carts#remove_from_cart', as: 'remove_from_cart'
