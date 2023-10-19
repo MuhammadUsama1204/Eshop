@@ -3,6 +3,11 @@ class Order < ApplicationRecord
 
   after_initialize :generate_order_number
 
+  validates :contact_no, numericality: { only_integer: true }, length: { in: 11..14, message: "should be between 11 and 14 digits" }
+  validates :shipping_address, presence: { message: "should be present" }
+  validates :billing_address, presence: { message: "should be present" }
+  validates :name, presence: { message: "should be present" }
+  
   belongs_to :user
   belongs_to :cart
   
