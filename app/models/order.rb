@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
   PER_PAGE = 10;
 
-  after_initialize :generate_order_number
+  before_create :generate_order_number
 
   validates :contact_no, numericality: { only_integer: true }, length: { in: 11..14, message: "should be between 11 and 14 digits" }
   validates :shipping_address, presence: { message: "should be present" }
