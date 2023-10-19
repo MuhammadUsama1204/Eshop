@@ -42,10 +42,6 @@
     </tbody>
   </table>
 <% end %>
-<nav aria-label="...">
-  <ul class="pagination justify-content-center">
-    <li class="page-item">
-      <%= will_paginate @orders %>
-    </li>
-  </ul>
-</nav>
+<div class="apple_pagination">
+  <%= will_paginate @orders, :container => false %>
+</div>
