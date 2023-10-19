@@ -25,4 +25,19 @@ document.addEventListener('turbo:load', function () {
   document.getElementById("prev-step-3").addEventListener("click", function () {
     showStep(1);
   });
+
+  var thumbnailImage = document.getElementById("thumbnail-image");
+  var fileInput = document.getElementById("product_display_picture");
+
+  fileInput.addEventListener("change", function () {
+    if (fileInput.files && fileInput.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        thumbnailImage.src = e.target.result;
+      };
+
+      reader.readAsDataURL(fileInput.files[0]);
+    }
+  });
 });
