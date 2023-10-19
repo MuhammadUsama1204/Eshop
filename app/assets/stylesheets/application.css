@@ -120,3 +120,11 @@ h2 {
 .apple_pagination a:hover, .apple_pagination a:focus {
   text-decoration: underline; 
 }
+.overlay {
+  position: absolute; 
+}
+.overlay_0 {
+	margin-top: 90%;
+	width: 100%;
+  background: #f42020;
+}
