@@ -45,6 +45,20 @@ class OrdersController < ApplicationController
       redirect_to order_path, notice: 'Order cannot destroyed!'
     end
   end
+  
+  def download_invoice
+    @order = Order.find(params[:id])
+    pdf = Prawn::Document.new
+    pdf.text "Invoice no: #{@order.order_number}"
+    pdf.text "STatus: #{@order.status}"
+    pdf.text "Name: #{@order.name}"
+    pdf.text "email: #{@order.user.email}"
+    pdf.text "Billing Address: #{@order.billing_address}"
+    pdf.text "Shipping Address: #{@order.shipping_address}"
+    pdf.text "Contact No: #{@order.contact_no}"
+
+    send_data(pdf.render, filename: "#{@order.order_number}.pdf", type: "application/pdf")
+  end
 
   private 
 
@@ -55,4 +69,5 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:order_number, :order_date, :payment_method, :user_id, :cart_id, :billing_address, :shipping_address, :status, :name, :contact_no)
   end
+  
 end
