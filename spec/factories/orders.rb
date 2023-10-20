@@ -5,6 +5,6 @@ FactoryBot.define do
     shipping_address { "demo ship" }
     status { "confirmed" }
     name { "usama" }
-    contact_no { "1234567890" }
+    contact_no { "1234567890000" }
   end
 end

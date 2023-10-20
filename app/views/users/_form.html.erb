@@ -10,6 +10,6 @@
    <div >
     <%= render "role_form", user: @user %>
     <span class="mx-1"></span> 
-	  <%= button_to "back", user_path, class: 'btn btn-primary btn-md' %>
+	  <%= link_to "back", user_path(@user), class: 'btn btn-primary btn-md' %>
   </div>
 <% end %>
