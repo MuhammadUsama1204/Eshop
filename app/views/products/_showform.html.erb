@@ -1,20 +1,7 @@
 <div class="container">
   <div class="card border-success mb-3" style="width: auto;">
     <div class="row no-gutters">
-      <div class="col-md-5 align-items-start">
-
-        <% if @product.display_picture.attached? %>
-          <%= image_tag @product.display_picture, class: "card-img" %>
-        <% else %>
-          <p>No image available for this Product!</p>
-        <% end %>
-
-        <div class="product-title border">
-          <h5 class="card-title"><%= @product.title %></h5>
-        </div>
-
-      </div>
-
+      
       <div class="col-md-7"> 
         <div class="card-body" style="margin: 120px;">
           <div class="product-id border"><h3>Item Id: <%= @product.id %></h3></div>
@@ -39,6 +26,19 @@
           <% end %>
         <% end %>
       </div>
+
+      <div class="col-md-5 align-items-start">
+        <% if @product.display_picture.attached? %>
+          <%= image_tag @product.display_picture, class: "card-img" %>
+        <% else %>
+          <p>No image available for this Product!</p>
+        <% end %>
+
+        <div class="product-title border">
+          <h5 class="card-title"><%= @product.title %></h5>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
