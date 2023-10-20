@@ -34,7 +34,7 @@
                 <% if product.quantity_in_stock? %>
                   <%= button_to 'Add to Cart', add_to_cart_cart_path(current_user, product_id: product.id), class: 'btn btn-danger flex-fill ms-1' %>
                 <% else %>
-                  <%= button_to 'Add to Cart', add_to_cart_cart_path(current_user, product_id: product.id), class: 'btn btn-danger flex-fill ms-1', disabled: true %>
+                  <%= button_to 'Add to Cart', add_to_cart_cart_path(current_user, product_id: product.id), class: 'btn btn-dark flex-fill ms-1', disabled: true %>
                 <% end %>
               </div>
             </div>
