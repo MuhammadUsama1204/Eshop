@@ -4,6 +4,10 @@ class CartsController < ApplicationController
   end
 	
 	def add_to_cart	
+    if @cart.nil? || @cart.deleted
+      @cart = Cart.new
+      @cart = current_user.create_cart
+    end
 		@product = Product.find(params[:product_id])
 		@line_item = @cart.line_items.find_or_initialize_by(product: @product)
 		@line_item.price = @product.price
