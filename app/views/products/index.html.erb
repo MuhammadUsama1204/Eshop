@@ -1,4 +1,8 @@
-<%= render "formcard", product: @product  %>
+<% if current_user.is_admin? %>
+  <%= render "adminform", product: @product  %>
+<% else %>
+  <%= render "formcard", product: @product  %>
+<% end %>
 <div class="apple_pagination">
   <%= will_paginate @paginate_products, :container => false %>
 </div>
