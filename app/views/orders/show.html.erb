@@ -42,20 +42,20 @@
               </div>
             </div>
           </div>
-          
-          <div class="py-2">
-            <h5 class="font-size-15">Order Summary</h5>
-            <div class="table-responsive">
-              <table class="table align-middle table-nowrap table-centered mb-0">
-                <thead>
-                  <tr>
-                    <th style="width: 70px;">No.</th>
-                    <th>Item</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th class="text-end" style="width: 120px;">Total</th>
-                  </tr>
-                </thead>
+            <% if @order && @order.cart && !@order.cart.line_items.empty? %>
+              <div class="py-2">
+                <h5 class="font-size-15">Order Summary</h5>
+                <div class="table-responsive">
+                  <table class="table align-middle table-nowrap table-centered mb-0">
+                    <thead>
+                      <tr>
+                        <th style="width: 70px;">No.</th>
+                        <th>Item</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th class="text-end" style="width: 120px;">Total</th>
+                      </tr>
+                    </thead>
                 <tbody>
                   <% sub_total = 0 %>
                   
@@ -72,7 +72,7 @@
                       <td><%= item.quantity %></td>
                       <td class="text-end">$ <%= item.price * item.quantity %></td>
                     </tr>
-                      <% sub_total += item.price * item.quantity %>
+                    <% sub_total += item.price * item.quantity %>
                   <% end %>
                   
                   <tr>
@@ -84,7 +84,8 @@
                     <td class="border-0 text-end"><h4 class="m-0 fw-semibold">$<%= @order.total_price = sub_total %></h4></td>
                   </tr>
                 </tbody>
-              </table>
+             <% end %>
+             </table>
             </div>
           </div>
             <%= link_to "Download Invoice", download_invoice_order_path(@order), class: 'btn btn-primary' %>
