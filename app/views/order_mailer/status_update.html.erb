@@ -1,8 +1,73 @@
-<h1>Order Status updated</h1>
-<% if @order.status == 'Cancelled' %>
-  <p>unfortunately Your Order is <%= @order.status %></p>
-  <p>Visit this link to check status: <%= link_to @order.order_number, order_url(@order.id) %></p>
-<% else %>
-  <p>Thank you for placing your order with us! Your Order is <%= @order.status %></p>
-  <p>Visit this link to check status: <%= link_to @order.order_number, order_url(@order.id) %></p>
-<% end %>
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .order-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .order-jumbotron {
+      background-color: gray;
+      color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    .order-title {
+      color: #fff;
+    }
+
+    .mail-text {
+      color: white;
+    }
+
+    .hello {
+      color: blue;
+    }
+
+    .order-text {
+      color: #666;
+    }
+
+    .order-footer {
+      margin-top: 20px;
+      color: #777;
+    }
+
+    .footer-logo {
+      max-width: 100px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="order-container">
+    <div class="order-jumbotron">
+      <h1 class="display-4 order-title">Order Status Update</h1>
+      <b><p class="mail-text">From: support@eshop.com </p></b>
+    </div>
+    <p class="hello">Hello <%= @order.user.username %>,</p>
+    <% if @order.status == 'Cancelled' %>
+      <p>Unfortunately, Your Order is <%= @order.status %></p>
+    <% else %>
+      <p class="order-text">Your order with number <%= @order.order_number %> has been updated to <%= @order.status %>.</p>
+      <p class="order-text">Thank you for choosing our service!</p>
+    <% end %>
+    <p>Visit this link to check status: <%= link_to @order.order_number, order_url(@order.id) %></p>
+    <hr class="my-4">
+    <div class="order-footer">
+      <p class="order-text">For any inquiries, please contact our support team at <a href="mailto:support@eshop.com">support@eshop.com</a>.</p>
+      <p class="order-text">This email was sent to <%= @order.user.email %> | <%= Time.current.strftime('%Y-%m-%d %H:%M:%S') %></p>
+    </div>
+  </div>
+</body>
+</html>
